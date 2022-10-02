@@ -1,0 +1,6 @@
+{% extends 'base.html' %} {% block content %}
+{% for teacher in teachers %}
+
+<h1>{{ teacher.first_name }}</h1>
+{% endfor %}
+{% endblock %} 
