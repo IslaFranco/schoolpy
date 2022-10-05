@@ -16,3 +16,11 @@ class User(AbstractUser):
     phone_number = models.CharField(max_length=14)
     sex = models.CharField(max_length=1)
     address = models.CharField(max_length=255)
+
+
+class Assignment(models.Model):
+    subject = models.CharField(max_length=100)
+    description = models.TextField(max_length=255)
+    title = models.CharField(max_length=100)
+    due_date = models.DateFie()
+    submitted = models.BooleanField()
