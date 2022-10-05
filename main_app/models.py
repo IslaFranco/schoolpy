@@ -24,3 +24,14 @@ class Assignment(models.Model):
     title = models.CharField(max_length=100)
     due_date = models.DateFie()
     submitted = models.BooleanField()
+
+
+class Course(models.Model):
+    subject = models.CharField(max_length=100)
+    description = models.TextField(max_length=255)
+    title = models.CharField(max_length=100)
+    start_time = models.DateFie()
+    end_time = models.DateFie()
+    level = models.CharField(max_length=100)
+    course_units = models.IntergerField()
+    term = models.CharField(max_length=100)
