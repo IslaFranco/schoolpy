@@ -35,9 +35,17 @@ class Course(models.Model):
     term = models.CharField(max_length=100)
 
 
+class StudentManager(BaseUserManager):
+    def get_queryset(self, *args, **kwargs):
+        results = super().get_queryset(*args, **kwargs)
+        return results.filter(role=User.Role.STUDENT)
+
+
 class Student(User):
 
     base_role = User.Role.STUDENT
+    student = StudentManager()
 
-    grade = models.CharField(max_length=100)
-    dob = models.DateField()
+
+grade = models.CharField(max_length=100)
+dob = models.DateField()
