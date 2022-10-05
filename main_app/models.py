@@ -1,4 +1,4 @@
-from django.db import model
+from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 
@@ -22,7 +22,7 @@ class Assignment(models.Model):
     subject = models.CharField(max_length=100)
     description = models.TextField(max_length=255)
     title = models.CharField(max_length=100)
-    due_date = models.DateFie()
+    due_date = models.DateField()
     submitted = models.BooleanField()
 
 
@@ -30,8 +30,8 @@ class Course(models.Model):
     subject = models.CharField(max_length=100)
     description = models.TextField(max_length=255)
     title = models.CharField(max_length=100)
-    start_time = models.DateFie()
-    end_time = models.DateFie()
+    start_time = models.DateField()
+    end_time = models.DateField()
     level = models.CharField(max_length=100)
-    course_units = models.IntergerField()
+    course_units = models.IntegerField()
     term = models.CharField(max_length=100)
