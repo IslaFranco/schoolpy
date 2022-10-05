@@ -10,14 +10,15 @@
     <title>SchoolPy</title>
 </head>
 <body>
-    <header>
-        {% include 'header.html' %}
-    </header>
-    {% block content %}
+    <!-- Header -->
+    {% include 'header.html' %}
 
+    <!-- Main -->
+    {% block content %}
     {% endblock %}
-    <footer>
-        {% include 'footer.html' %}
-    </footer>
+
+    <!-- Footer -->
+    {% include 'footer.html' %}
+    <script type="text/javascript" src="{% static 'js/header.js' %}"></script>
 </body>
 </html>
