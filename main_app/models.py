@@ -4,15 +4,13 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
 
-    class Roles(models.TextChoices):
+    class Role(models.TextChoices):
         TEACHER = "TEACHER", 'Teacher'
         STUDENT = "STUDENT", 'Student'
 
-    role = models.CharField(max_length=255, choices=Roles.choices)
+    role = models.CharField(max_length=100, choices=Role.choices)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    password = models.CharField(max_length=100)
-    email = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=14)
     sex = models.CharField(max_length=1)
     address = models.CharField(max_length=255)
@@ -35,3 +33,11 @@ class Course(models.Model):
     level = models.CharField(max_length=100)
     course_units = models.IntegerField()
     term = models.CharField(max_length=100)
+
+
+class Student(User):
+
+    base_role = User.Role.STUDENT
+
+    grade = models.CharField(max_length=100)
+    dob = models.DateField()
