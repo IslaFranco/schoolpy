@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
 
 
@@ -46,9 +47,8 @@ class Student(User):
     base_role = User.Role.STUDENT
     student = StudentManager()
 
-
-grade = models.CharField(max_length=100)
-dob = models.DateField()
+    grade = models.CharField(max_length=100)
+    dob = models.DateField()
 
 
 class TeacherManager(BaseUserManager):
@@ -62,6 +62,5 @@ class Teacher(User):
     base_role = User.Role.TEACHER
     teacher = TeacherManager()
 
-
-grade = models.CharField(max_length=100)
-dob = models.DateField()
+    subject = models.CharField(max_length=100)
+    description = models.CharField(max_length=100)
