@@ -1,1 +1,41 @@
-<h1>Header</h1>
+<header>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="{% url 'home' %}">
+                Schoolpy
+            </a>
+        
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+    
+        <div class="navbar-menu" id="navMenu">
+            <div class="navbar-start">
+                <a class="navbar-item">
+                Dashboard
+                </a>  
+            </div>
+        
+            <div class="navbar-end">
+                <div class="navbar-item">
+                <div class="buttons">
+                    <!-- TODO: if user.is_authorized -->
+                    <a class="button btn-signup" href=""> <!-- TODO: href Logout link -->
+                        <strong>Logout</strong>
+                    </a>
+
+                    <!-- else -->
+                    <a class="button btn-signup" href="{% url 'teacher-signup' %}">
+                        <strong>Sign up / Login</strong>
+                    </a>
+                    <!-- endif -->
+
+                </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
