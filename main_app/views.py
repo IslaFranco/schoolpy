@@ -45,15 +45,15 @@ def teacher_signup(request):
     error_message = ''
     if request.method == 'POST':
         # capture form inputs from the usercreation form
-            form = SignUpFormTeacher(request.POST)
-            user = form.save()
-            # programmatically log the user in
-            login(request, user)
-            # redirect the user to the cats index page
-            return redirect('index')
+        form = SignUpFormTeacher(request.POST)
+        user = form.save()
+        # programmatically log the user in
+        login(request, user)
+        # redirect the user to the cats index page
+        return redirect('index')
         # if form is invalid show error message
-        else:
-            error_message = 'Invalid credentials'
+    else:
+        error_message = 'Invalid credentials'
     # define tasks for handling GET request
     context = {'form': form, 'error_message': error_message}
     # render a template with an empty form
@@ -66,7 +66,7 @@ def student_signup(request):
     error_message = ''
     if request.method == 'POST':
         # capture form inputs from the usercreation form
-        form = UserCreationForm(request.POST)
+        form = SignUpFormStudent(request.POST)
         # validate the form inputs
         if form.is_valid():
             # save the input values as a new user to the database
