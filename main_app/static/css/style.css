@@ -1,3 +1,37 @@
-body {
-    /* background-color: blue; */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+:root{
+    --main-color: rgb(34, 74, 106);
+    --main-color-hover: rgb(34, 74, 106);
+}
+body{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+footer{
+    background-color: var(--main-color) !important;
+    padding: 2rem !important;
+}
+footer a,p,strong{
+    color: white;
+}
+footer a:hover{
+    color: rgb(232, 232, 232);
+}
+
+.navbar{
+    background-color: rgb(234, 234, 234);
+}
+.btn-signup{
+    color: white;
+    background-color: var(--main-color);
+}
+.btn-signup:hover{
+    color: white;
+    background-color: var(--main-color-hover);
 }
