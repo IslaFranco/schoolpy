@@ -32,12 +32,20 @@ class SignUpFormTeacher(UserCreationForm):
                   'first_name', 'last_name', 'phone_number', 'sex', 'address', 'subject', 'description')
 
 
+class SignUpFormStudent(UserCreationForm):
+    class Meta:
+        model = Student
+        fields = ('username', 'email', 'password1', 'password2',
+                  'first_name', 'last_name', 'phone_number', 'sex', 'address', 'grade', 'dob')
+
+
 def teacher_signup(request):
     # define tasks for handing POST request
     form = SignUpFormTeacher()
     error_message = ''
     if request.method == 'POST':
         # capture form inputs from the usercreation form
+            form = SignUpFormTeacher(request.POST)
             user = form.save()
             # programmatically log the user in
             login(request, user)
@@ -54,7 +62,7 @@ def teacher_signup(request):
 
 def student_signup(request):
     # define tasks for handing POST request
-    form = UserCreationForm()
+    form = SignUpFormStudent()
     error_message = ''
     if request.method == 'POST':
         # capture form inputs from the usercreation form
