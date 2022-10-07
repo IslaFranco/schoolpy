@@ -1,66 +1,92 @@
 from unicodedata import name
-from django.contrib.auth.forms import UserCreationForm 
-from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
+from .models import Student, Teacher
 
-# Create your views here.
-# Add the following import
-# from django.http import HttpResponse
 
-# Define the home view
 def home(request):
-  return render(request, 'base.html')
+    return render(request, 'base.html')
+
 
 def about(request):
-  return render(request, 'about.html')  
+    return render(request, 'about.html')
+
 
 def index(request):
-  return render(request, 'index.html')  
+    return render(request, 'index.html')
+
+def teacherLogin(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(request, username=username, password=password)
+    if request.method == 'POST':
+        login(request, user)
+        return redirect('teacher-dashboard')
+
 
 def teacherDashboard(request):
-  return render(request, 'teacher-dashboard.html', { 'teachers': teachers })  
+    teachers = Teacher.objects.filter(username=request.user)
+    return render(request, 'teacher-dashboard.html', {'teachers': teachers})
 
+    
 def studentDashboard(request):
-  return render(request, 'student-dashboard.html', { 'students': students })   
+    students = Student.objects.filter(username=request.user)
+    return render(request, 'student-dashboard.html', {'students': students})
+
+
+class SignUpFormTeacher(UserCreationForm):
+    class Meta:
+        model = Teacher
+        fields = ('username', 'email', 'password1', 'password2',
+                  'first_name', 'last_name', 'phone_number', 'sex', 'address', 'subject', 'description')
+
+
+class SignUpFormStudent(UserCreationForm):
+    class Meta:
+        model = Student
+        fields = ('username', 'email', 'password1', 'password2',
+                  'first_name', 'last_name', 'phone_number', 'sex', 'address', 'grade', 'dob')
+
 
 def teacher_signup(request):
     # define tasks for handing POST request
-    form = UserCreationForm()
+    print(request.POST)
+    form = SignUpFormTeacher()
     error_message = ''
     if request.method == 'POST':
-        #capture form inputs from the usercreation form
-        form = UserCreationForm(request.POST)
-        #validate the form inputs
+        # capture form inputs from the usercreation form
+        form = SignUpFormTeacher(request.POST)
         if form.is_valid():
-            #save the input values as a new user to the database
+            print('inside')
             user = form.save()
-            #programmatically log the user in
+        # programmatically log the user in
             login(request, user)
-            #redirect the user to the cats index page
-            return redirect('index')
+        # redirect the user to the cats index page
+            return redirect('teacher-dashboard')
         # if form is invalid show error message
-        else:
-            error_message = 'Invalid credentials'
+    else:
+        error_message = 'Invalid credentials'
     # define tasks for handling GET request
     context = {'form': form, 'error_message': error_message}
-    # redner a template with an empty form
-    return render(request, 'registration/teacher_signup.html', context) 
+    # render a template with an empty form
+    return render(request, 'registration/teacher_signup.html', context)
 
 
 def student_signup(request):
     # define tasks for handing POST request
-    form = UserCreationForm()
+    form = SignUpFormStudent()
     error_message = ''
     if request.method == 'POST':
-        #capture form inputs from the usercreation form
-        form = UserCreationForm(request.POST)
-        #validate the form inputs
+        # capture form inputs from the usercreation form
+        form = SignUpFormStudent(request.POST)
+        # validate the form inputs
         if form.is_valid():
-            #save the input values as a new user to the database
+            # save the input values as a new user to the database
             user = form.save()
-            #programmatically log the user in
+            # programmatically log the user in
             login(request, user)
-            #redirect the user to the cats index page
+            # redirect the user to the cats index page
             return redirect('index')
         # if form is invalid show error message
         else:
@@ -68,41 +94,4 @@ def student_signup(request):
     # define tasks for handling GET request
     context = {'form': form, 'error_message': error_message}
     # redner a template with an empty form
-    return render(request, 'registration/student_signup.html', context)     
-
-
-class Teacher:
-  def __init__(self, first_name, last_name, password, email, phone_num, sex, address, role, subject, description):
-    self.first_name = first_name
-    self.last_name = last_name
-    self.password = password
-    self.email = email
-    self.phone_num = phone_num
-    self.sex = sex
-    self.address = address
-    self.role = role
-    self.subject = subject
-    self.description = description
-
-
-teachers = [
-  Teacher('Jane', 'Rudo', 'password', 'j_r@yahoo.com', '123-456-7891', 'F', 'fake-address', 'Teacher', 'Math', 'Difficult'),
-]  
-print(teachers)
-class Student:
-  def __init__(self, first_name, last_name, password, email, phone_num, sex, address, role, grade, dob):
-    self.first_name = first_name
-    self.last_name = last_name
-    self.password = password
-    self.email = email
-    self.phone_num = phone_num
-    self.sex = sex
-    self.address = address
-    self.role = role
-    self.grade = grade
-    self.dob = dob
-
-
-students = [
-  Student('Jane', 'Rudo', 'password', 'j_r@yahoo.com', '123-456-7891', 'F', 'fake-address', 'Teacher', '10', '2000-02-22'),
-]    
+    return render(request, 'registration/student_signup.html', context)
