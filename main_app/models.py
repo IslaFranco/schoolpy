@@ -24,7 +24,7 @@ class User(AbstractUser):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=14)
-    sex = models.CharField(max_length=1)
+    sex = models.CharField(max_length=10)
     address = models.CharField(max_length=255)
 
 
@@ -83,7 +83,7 @@ class Teacher(User):
     teacher = TeacherManager()
 
     subject = models.CharField(max_length=100)
-    description = models.CharField(max_length=100)
+    description = models.CharField(max_length=500)
 
 
 # @receiver(post_save, sender=Teacher)
