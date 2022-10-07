@@ -11,14 +11,20 @@
 </head>
 <body>
     <!-- Header -->
-    {% include 'header.html' %}
+    <header>
+        {% include 'header.html' %}
+    </header>
 
     <!-- Main -->
-    {% block content %}
-    {% endblock %}
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
 
     <!-- Footer -->
-    {% include 'footer.html' %}
-    <script type="text/javascript" src="{% static 'js/header.js' %}"></script>
+    <footer class="footer">
+        {% include 'footer.html' %}
+    </footer>
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
