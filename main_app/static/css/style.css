@@ -109,3 +109,34 @@ footer a:hover{
     width: 200px;
     margin-right: 10px;
 }
+.section .is-medium{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.about-btn-container{
+    display: flex;
+}
+
+.about-btn {
+    margin-right: 1rem;
+}
+.about-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem;
+}
+.icon {
+    color: black;;
+}
+.icon-title {
+    display: flex;
+    align-items: center;
+}
+ion-icon{
+    font-size: 100px;
+    
+}
+
