@@ -26,8 +26,8 @@ def teacherLogin(request):
 
 
 def teacherDashboard(request):
-    teachers = Teacher.objects.filter(username=request.user)
-    return render(request, 'teacher-dashboard.html', {'teachers': teachers})
+    students = Student.objects.all()
+    return render(request, 'teacher-dashboard.html', {'students': students})
 
     
 def studentDashboard(request):
@@ -58,7 +58,6 @@ def teacher_signup(request):
         # capture form inputs from the usercreation form
         form = SignUpFormTeacher(request.POST)
         if form.is_valid():
-            print('inside')
             user = form.save()
         # programmatically log the user in
             login(request, user)
