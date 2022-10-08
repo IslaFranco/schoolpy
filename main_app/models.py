@@ -62,6 +62,7 @@ class Student(User):
 
     class Meta:
         verbose_name_plural = 'Student'
+        app_label = 'auth'
 
 
 # @receiver(post_save, sender=Student)
@@ -90,3 +91,4 @@ class Teacher(User):
 
     class Meta:
         verbose_name_plural = 'Teacher'
+        app_label = 'auth'
