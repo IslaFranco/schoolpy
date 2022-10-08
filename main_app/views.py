@@ -8,15 +8,11 @@ from .models import Student, Teacher
 def home(request):
     return render(request, 'index.html')
 
-
 def about(request):
     return render(request, 'about.html')
 
-
-
 def index(request):
     return render(request, 'index.html')
-
 
 def teacherLogin(request):
     username = request.POST['username']
@@ -26,6 +22,13 @@ def teacherLogin(request):
         login(request, user)
         return redirect('teacher-dashboard')
 
+def studentLogin(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(request, username=username, password=password)
+    if request.method == 'POST':
+        login(request, user)
+        return redirect('student-dashboard')
 
 def teacherDashboard(request):
     students = Student.objects.all()
@@ -88,7 +91,7 @@ def student_signup(request):
             # programmatically log the user in
             login(request, user)
             # redirect the user to the cats index page
-            return redirect('index')
+            return redirect('student-dashboard')
         # if form is invalid show error message
         else:
             error_message = 'Invalid credentials'
