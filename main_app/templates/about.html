@@ -2,7 +2,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+  
 <div class="about-container">
     <h1 class="is-medium">Teaching Tools in One Place</h1>
     <h2 class="subtitle is-medium">
@@ -12,24 +12,14 @@
         Allows teachers to post assignments, grades, and other common classroom materials.
     </h2>
     <div class="about-btn-container">
-        <a class="button is-info about-btn" href="{% url 'student-signup' %}">Create Student Account</a>
-        <a class="button is-info about-btn" href="{% url 'teacher-signup' %}">Create Teacher Account</a>
-    </div>
-</div>  
-<hr/>      
-<div class="columns">
-    <div class="column">
-        <h1>Courses</h1>
-        <h2>Displays everything you need to know about the course, including your teacher, level, course units, and more!</h2>
-    </div>
-    <div class="column">
-        <h1>Assignments</h1>
-        <h2>Be informed when your assignemnts are due for each subject! Never miss submitting an assignment again with Schoolpy!</h2>
-    </div>
-    <div class="column">
-        <h1>Announcments</h1>
-        <h2>Helps you keep track of important announcements you may have missed during lecture or important dates.</h2>
-    </div>
+        <a class="button is-info about-btn" href="{% url 'student-signup' %}">Signup Student Account</a>
+        <a class="button is-info about-btn" href="{% url 'teacher-signup' %}">Signup Teacher Account</a>
 </div>
+    <div class="img-container">
+        <figure class="image-index">
+            <img class="img-index" src="https://www.teachhub.com/wp-content/uploads/2021/06/June-21-Adding-SEL-Components-to-a-High-School-Classroom_web.jpg">
+        </figure>
+    </div>
+
 
 {% endblock %}
