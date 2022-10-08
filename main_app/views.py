@@ -16,6 +16,7 @@ def about(request):
 def index(request):
     return render(request, 'index.html')
 
+
 def teacherLogin(request):
     username = request.POST['username']
     password = request.POST['password']
@@ -29,7 +30,7 @@ def teacherDashboard(request):
     students = Student.objects.all()
     return render(request, 'teacher-dashboard.html', {'students': students})
 
-    
+
 def studentDashboard(request):
     students = Student.objects.filter(username=request.user)
     return render(request, 'student-dashboard.html', {'students': students})
@@ -51,12 +52,12 @@ class SignUpFormStudent(UserCreationForm):
 
 def teacher_signup(request):
     # define tasks for handing POST request
-    print(request.POST)
     form = SignUpFormTeacher()
     error_message = ''
     if request.method == 'POST':
         # capture form inputs from the usercreation form
         form = SignUpFormTeacher(request.POST)
+
         if form.is_valid():
             user = form.save()
         # programmatically log the user in
@@ -64,8 +65,8 @@ def teacher_signup(request):
         # redirect the user to the cats index page
             return redirect('teacher-dashboard')
         # if form is invalid show error message
-    else:
-        error_message = 'Invalid credentials'
+        else:
+            error_message = 'Invalid credentials'
     # define tasks for handling GET request
     context = {'form': form, 'error_message': error_message}
     # render a template with an empty form
