@@ -1,6 +1,103 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+<!-- Student Signup -->
+<div class="columns" >
+    <div class="column">
+        <!-- Student Login -->
+        <h1 class="form-title">Student Login</h1>
+        {% if error_message %}
+            <p class="error-text">{{ error_message }}</p>
+        {% endif %}
+        <form class="field" action="{% url 'student-login' %}" method="POST">
+            {% csrf_token %}
+            <label class="label">
+                Username<span class="required"> *</span>
+                <input class="input" type="text" name="username" required>
+            </label>
+            <label class="label">
+                Password<span class="required"> *</span>
+                <input class="input" type="password" name="password" required>
+            </label>
+            <input class="button btn-form" type="submit" value="Login">
+        </form>
+    </div>
+    <div class="column is-three-fifths">
+        <h1 class="form-title">Student Signup</h1>
+        {% if error_message %}
+            <p class="error-text">{{ error_message }}</p>
+        {% endif %}
+        <form class="field" action="{% url 'student-signup'%}" method="POST">
+            {% csrf_token %}
+            <div class="label-container">
+                <label class="label">
+                    First Name<span class="required"> *</span>
+                    <input class="input" type="text" name="first_name" required>
+                </label>
+                <label class="label">
+                    Last Name<span class="required"> *</span>
+                    <input class="input" type="text" name="last_name" required>
+                </label>
+            </div>
+            <div class="label-container">
+                <label class="label">
+                    Username<span class="required"> *</span>
+                    <input class="input" type="text" name="username" required>
+                </label>
+                <label class="label">
+                    Email<span class="required"> *</span>
+                    <input class="input" type="email" name="email" required>
+                </label>
+            </div>
+            <div class="label-container">
+                <label class="label">
+                    Address<span class="required"> *</span>
+                    <input class="input" type="text" name="address" required>
+                </label>
+                <label class="label">
+                    Phone Number<span class="required"> *</span>
+                    <input class="input" type="tel" name="phone_number" maxlength="14" required>
+                </label>
+            </div>
+            <div class="label-container">
+                <label class="label">
+                    Grade<span class="required"> *</span>
+                    <input class="input" type="text" name="grade" placeholder="10" required>
+                </label>
+                <label class="label">
+                    Date of Birth
+                    <input class="input" type="date" name="dob">
+                </label>
+                <label class="label">
+                    Sex
+                    <input class="input" type="text" name="sex" maxlength="10">
+                </label>
+            </div>
+            <div class="label-container password-requirements">
+                <ul>
+                    <li>Your password must contain at least 8 characters</li>
+                    <li>Your password must contain at least 1 digit, 0-9</li>
+                    <li>Your password can't be entirely numeric</li>
+                    <li>Your password can't be commonly used password</li>
+                </ul>
+            </div>
+            <div class="label-container">
+                <label class="label">
+                    Password<span class="required"> *</span>
+                    <input class="input" type="password" name="password1" minlength="8" pattern="(?=.*\d)(?=.*[a-z]).{8,}" required>
+                </label>
+                <label class="label">
+                    Confirm Password<span class="required"> *</span>
+                    <input class="input" type="password" name="password2" minlength="8" required>
+                </label>
+            </div>
+            <input class="button btn-form" type="submit" value="Signup">
+        </form>
+    </div>
+</div>
+{% endblock %}
+
 <!-- student signup -->
 <h1>Student Signup</h1>
 {% if error_message %}
@@ -21,3 +118,4 @@
 </form>
 
 {% endblock %}
+
