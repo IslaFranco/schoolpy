@@ -4,11 +4,8 @@
     box-sizing: border-box;
 }
 :root{
-    --main-color: rgb(34, 74, 106);
+    --main-color: rgb(44, 94, 135);
     --main-color-hover: rgb(34, 74, 106);
-}
-h1{
-    font-size: 2rem;
 }
 body{
     height: 100vh;
@@ -24,6 +21,7 @@ main{
     margin: 0;
     flex: 1 0 auto;
 }
+
 footer{
     background-color: var(--main-color) !important;
     padding: 2rem !important;
@@ -34,16 +32,25 @@ footer a,p,strong{
 footer a:hover{
     color: rgb(232, 232, 232);
 }
+
+/* NAVIGATION */
 .navbar{
     background-color: rgb(234, 234, 234);
 }
 .btn-signup{
-    color: white;
     background-color: var(--main-color);
+    color: white;
 }
 .btn-signup:hover{
-    color: white;
     background-color: var(--main-color-hover);
+    color: white;
+}
+
+/* TEACHER FORM */
+.form-title{
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
 }
 .column{
     display: flex;
@@ -55,9 +62,30 @@ footer a:hover{
     align-content: center;
 }
 .label{
-    max-width: 250px;
+    width: 100%;
     padding: 0.4rem;
 }
+.btn-form{
+    background-color: var(--main-color);
+    color: white;
+    margin-left: 0.4rem;
+}
+.btn-form:hover{
+    background-color: var(--main-color-hover);
+    color: white;
+}
+.password-requirements{
+    padding-left: 1.2rem;
+}
+.password-requirements li{
+    list-style-type: disc;
+}
+.required, .error-text{
+    color: red;
+}
+
+
+/* TEACHER DASHBOARD */
 .teacher-name, .student-name{
     font-size: 1.4rem;
     font-weight: 700;
