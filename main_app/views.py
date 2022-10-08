@@ -1,6 +1,6 @@
 from unicodedata import name
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login
+from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from .models import Student, Teacher
 
@@ -16,12 +16,22 @@ def about(request):
 def index(request):
     return render(request, 'index.html')
 
+def teacherLogin(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(request, username=username, password=password)
+    if request.method == 'POST':
+        login(request, user)
+        return redirect('teacher-dashboard')
+
 
 def teacherDashboard(request):
+    teachers = Teacher.objects.filter(username=request.user)
     return render(request, 'teacher-dashboard.html', {'teachers': teachers})
 
-
+    
 def studentDashboard(request):
+    students = Student.objects.filter(username=request.user)
     return render(request, 'student-dashboard.html', {'students': students})
 
 
@@ -41,16 +51,19 @@ class SignUpFormStudent(UserCreationForm):
 
 def teacher_signup(request):
     # define tasks for handing POST request
+    print(request.POST)
     form = SignUpFormTeacher()
     error_message = ''
     if request.method == 'POST':
         # capture form inputs from the usercreation form
         form = SignUpFormTeacher(request.POST)
-        user = form.save()
+        if form.is_valid():
+            print('inside')
+            user = form.save()
         # programmatically log the user in
-        login(request, user)
+            login(request, user)
         # redirect the user to the cats index page
-        return redirect('index')
+            return redirect('teacher-dashboard')
         # if form is invalid show error message
     else:
         error_message = 'Invalid credentials'
