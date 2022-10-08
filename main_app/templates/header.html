@@ -21,17 +21,15 @@
         <div class="navbar-end">
             <div class="navbar-item">
             <div class="buttons">
-                <!-- TODO: if user.is_authorized -->
-                <a class="button btn-signup" href=""> <!-- TODO: href Logout link -->
+                {% if user.role == "TEACHER" %}
+                <a class="button btn-signup" href="{% url 'logout' %}">
                     <strong>Logout</strong>
                 </a>
-
-                <!-- else -->
+                {% else %}
                 <a class="button btn-signup" href="{% url 'teacher-signup' %}">
                     <strong>Sign up / Login</strong>
                 </a>
-                <!-- endif -->
-
+                {% endif %}
             </div>
             </div>
         </div>
