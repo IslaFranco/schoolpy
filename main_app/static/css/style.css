@@ -19,8 +19,10 @@ body{
 main{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     padding: 1rem;
+    margin: 0;
+    flex: 1 0 auto;
 }
 footer{
     background-color: var(--main-color) !important;
@@ -56,4 +58,26 @@ footer a:hover{
     max-width: 250px;
     padding: 0.4rem;
 }
-
+.teacher-name, .student-name{
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+.teacher-info{
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+.student-container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 240px;
+    width: 200px;
+    margin-right: 10px;
+}
