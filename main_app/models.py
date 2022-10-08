@@ -60,6 +60,10 @@ class Student(User):
     grade = models.CharField(max_length=100)
     dob = models.DateField()
 
+    class Meta:
+        verbose_name_plural = 'Student'
+        app_label = 'auth'
+
 
 # @receiver(post_save, sender=Student)
 # def create_user_profile(sender, instance, created, **kwargs):
@@ -85,12 +89,6 @@ class Teacher(User):
     subject = models.CharField(max_length=100)
     description = models.CharField(max_length=500)
 
-
-# @receiver(post_save, sender=Teacher)
-# def create_user_profile(sender, instance, created, **kwargs):
-#     if created and instance.role == "TEACHER":
-#         TeacherProfile.objects.create(user=instance)
-
-
-# class TeacherProfile(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    class Meta:
+        verbose_name_plural = 'Teacher'
+        app_label = 'auth'
