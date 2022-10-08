@@ -5,85 +5,95 @@
 <div class="columns" >
     <div class="column">
         <!-- teacher login -->
-        <h1>Teacher Login</h1>
+        <h1 class="form-title">Teacher Login</h1>
         {% if error_message %}
-            <p class="red-text">{{ error_message }}</p>
+            <p class="error-text">{{ error_message }}</p>
         {% endif %}
         <form class="field" action="{% url 'teacher-login' %}" method="POST">
             {% csrf_token %}
             <label class="label">
-                Username
-                <input class="input" type="text" name="username">
+                Username<span class="required"> *</span>
+                <input class="input" type="text" name="username" required>
             </label>
             <label class="label">
-                Password
-                <input class="input" type="password" name="password">
+                Password<span class="required"> *</span>
+                <input class="input" type="password" name="password" required>
             </label>
-            <input class="button" type="submit" value="Login">
+            <input class="button btn-form" type="submit" value="Login">
         </form>
     </div>
     <div class="column is-three-fifths">
+        <h1 class="form-title">Teacher Signup</h1>
+        {% if error_message %}
+            <p class="error-text">{{ error_message }}</p>
         <h1>Teacher Signup</h1>
-        {% if error_messgae %}
-            <p>{{ error_message }}</p>
         {% endif %}
-        <form class="field" action="" method="POST">
+            <p>{{ error_message }}</p>
+        <form class="field" action="{% url 'teacher-signup'%}" method="POST">
             {% csrf_token %}
             <div class="label-container">
                 <label class="label">
-                    First Name
-                    <input class="input" type="text" name="first_name">
+                    First Name<span class="required"> *</span>
+                    <input class="input" type="text" name="first_name" required>
                 </label>
                 <label class="label">
-                    Last Name
-                    <input class="input" type="text" name="last_name">
-                </label>
-            </div>
-            <div class="label-container">
-                <label class="label">
-                    Username
-                    <input class="input" type="text" name="username">
-                </label>
-                <label class="label">
-                    Email
-                    <input class="input" type="email" name="email">
+                    Last Name<span class="required"> *</span>
+                    <input class="input" type="text" name="last_name" required>
                 </label>
             </div>
             <div class="label-container">
                 <label class="label">
-                    Address
-                    <input class="input" type="text" name="address">
+                    Username<span class="required"> *</span>
+                    <input class="input" type="text" name="username" required>
                 </label>
                 <label class="label">
-                    Phone Number
-                    <input class="input" type="tel" name="phone_number" maxlength="14" id="phone">
+                    Email<span class="required"> *</span>
+                    <input class="input" type="email" name="email" required>
                 </label>
             </div>
             <div class="label-container">
                 <label class="label">
-                    Teaching Subject
-                    <input class="input" type="text" name="subject" placeholder="Math">
+                    Address<span class="required"> *</span>
+                    <input class="input" type="text" name="address" required>
+                </label>
+                <label class="label">
+                    Phone Number<span class="required"> *</span>
+                    <input class="input" type="tel" name="phone_number" maxlength="14" required>
+                </label>
+            </div>
+            <div class="label-container">
+                <label class="label">
+                    Teaching Subject<span class="required"> *</span>
+                    <input class="input" type="text" name="subject" placeholder="Math" required>
                 </label>
                 <label class="label">
                     Sex
                     <input class="input" type="text" name="sex" placeholder="Female" maxlength="10">
                 </label>
             </div>
-            <label class="label label-description">
+            <label class="label">
                 Description
-                <textarea class="textarea" name="description" rows="5" maxlength="500"></textarea>
+                <textarea class="textarea" name="description" rows="3" maxlength="500"></textarea>
             </label>
+            <div class="label-container password-requirements">
+                <ul>
+                    <li>Your password must contain at least 8 characters</li>
+                    <li>Your password must contain at least 1 digit, 0-9</li>
+                    <li>Your password can't be entirely numeric</li>
+                    <li>Your password can't be commonly used password</li>
+                </ul>
+            </div>
             <div class="label-container">
                 <label class="label">
-                    Password
-                    <input class="input" type="password" name="password1">
+                    Password<span class="required"> *</span>
+                    <input class="input" type="password" name="password1" minlength="8" pattern="(?=.*\d)(?=.*[a-z]).{8,}" required>
                 </label>
                 <label class="label">
-                    Confirm Password
-                    <input class="input" type="password" name="password2">
+                    Confirm Password<span class="required"> *</span>
+                    <input class="input" type="password" name="password2" minlength="8" required>
                 </label>
             </div>
-            <input type="submit" value="Signup" class="button">
+            <input class="button btn-form" type="submit" value="Signup">
         </form>
     </div>
 </div>

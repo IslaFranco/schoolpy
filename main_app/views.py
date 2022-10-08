@@ -8,9 +8,11 @@ from .models import Student, Teacher
 def home(request):
     return render(request, 'index.html')
 
-
 def about(request):
     return render(request, 'about.html')
+
+def index(request):
+    return render(request, 'index.html')
 
 def teacherLogin(request):
     username = request.POST['username']
@@ -20,12 +22,19 @@ def teacherLogin(request):
         login(request, user)
         return redirect('teacher-dashboard')
 
+def studentLogin(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(request, username=username, password=password)
+    if request.method == 'POST':
+        login(request, user)
+        return redirect('student-dashboard')
 
 def teacherDashboard(request):
     students = Student.objects.all()
     return render(request, 'teacher-dashboard.html', {'students': students})
 
-    
+
 def studentDashboard(request):
     students = Student.objects.filter(username=request.user)
     return render(request, 'student-dashboard.html', {'students': students})
@@ -52,6 +61,7 @@ def teacher_signup(request):
     if request.method == 'POST':
         # capture form inputs from the usercreation form
         form = SignUpFormTeacher(request.POST)
+
         if form.is_valid():
             user = form.save()
         # programmatically log the user in
@@ -59,8 +69,8 @@ def teacher_signup(request):
         # redirect the user to the cats index page
             return redirect('teacher-dashboard')
         # if form is invalid show error message
-    else:
-        error_message = 'Invalid credentials'
+        else:
+            error_message = 'Invalid credentials'
     # define tasks for handling GET request
     context = {'form': form, 'error_message': error_message}
     # render a template with an empty form
@@ -81,7 +91,7 @@ def student_signup(request):
             # programmatically log the user in
             login(request, user)
             # redirect the user to the cats index page
-            return redirect('index')
+            return redirect('student-dashboard')
         # if form is invalid show error message
         else:
             error_message = 'Invalid credentials'
