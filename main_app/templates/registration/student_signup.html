@@ -13,7 +13,8 @@
             {% csrf_token %}
             <label class="label">
                 Username<span class="required"> *</span>
-                <input class="input" type="text" name="username" required>
+                <input class="input" type="text" name="username" pattern="[A-Za-z0-9]+" required>
+                <p class="help is-danger">Spaces are not allowed</p>
             </label>
             <label class="label">
                 Password<span class="required"> *</span>
@@ -42,7 +43,8 @@
             <div class="label-container">
                 <label class="label">
                     Username<span class="required"> *</span>
-                    <input class="input" type="text" name="username" required>
+                    <input class="input" type="text" name="username" pattern="[A-Za-z0-9]+" required>
+                    <p class="help is-danger">Spaces are not allowed</p>
                 </label>
                 <label class="label">
                     Email<span class="required"> *</span>
@@ -56,7 +58,8 @@
                 </label>
                 <label class="label">
                     Phone Number<span class="required"> *</span>
-                    <input class="input" type="tel" name="phone_number" maxlength="14" required>
+                    <input class="input" type="tel" name="phone_number" maxlength="14" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+                    <p class="help is-danger">Format: 123-456-7890</p>
                 </label>
             </div>
             <div class="label-container">
@@ -65,12 +68,12 @@
                     <input class="input" type="text" name="grade" placeholder="10" required>
                 </label>
                 <label class="label">
-                    Date of Birth
-                    <input class="input" type="date" name="dob">
+                    Date of Birth<span class="required"> *</span>
+                    <input class="input" type="date" name="dob" required>
                 </label>
                 <label class="label">
-                    Sex
-                    <input class="input" type="text" name="sex" maxlength="10">
+                    Sex<span class="required"> *</span>
+                    <input class="input" type="text" name="sex" placeholder="Female" maxlength="10" required>
                 </label>
             </div>
             <div class="label-container password-requirements">
