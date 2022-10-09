@@ -13,7 +13,8 @@
             {% csrf_token %}
             <label class="label">
                 Username<span class="required"> *</span>
-                <input class="input" type="text" name="username" required>
+                <input class="input" type="text" name="username" pattern="[A-Za-z0-9]+" required>
+                <p class="help is-danger">Spaces are not allowed</p>
             </label>
             <label class="label">
                 Password<span class="required"> *</span>
@@ -25,10 +26,8 @@
     <div class="column is-three-fifths">
         <h1 class="form-title">Teacher Signup</h1>
         {% if error_message %}
-            <p class="error-text">{{ error_message }}</p>
-        <h1>Teacher Signup</h1>
-        {% endif %}
             <p>{{ error_message }}</p>
+        {% endif %}
         <form class="field" action="{% url 'teacher-signup'%}" method="POST">
             {% csrf_token %}
             <div class="label-container">
@@ -44,7 +43,8 @@
             <div class="label-container">
                 <label class="label">
                     Username<span class="required"> *</span>
-                    <input class="input" type="text" name="username" required>
+                    <input class="input" type="text" name="username" pattern="[A-Za-z0-9]+" required>
+                    <p class="help is-danger">Spaces are not allowed</p>
                 </label>
                 <label class="label">
                     Email<span class="required"> *</span>
@@ -58,7 +58,8 @@
                 </label>
                 <label class="label">
                     Phone Number<span class="required"> *</span>
-                    <input class="input" type="tel" name="phone_number" maxlength="14" required>
+                    <input class="input" type="tel" name="phone_number" maxlength="14" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+                    <p class="help is-danger">Format: 123-456-7890</p>
                 </label>
             </div>
             <div class="label-container">
@@ -67,13 +68,13 @@
                     <input class="input" type="text" name="subject" placeholder="Math" required>
                 </label>
                 <label class="label">
-                    Sex
-                    <input class="input" type="text" name="sex" placeholder="Female" maxlength="10">
+                    Sex<span class="required"> *</span>
+                    <input class="input" type="text" name="sex" placeholder="Female" maxlength="10" required>
                 </label>
             </div>
             <label class="label">
-                Description
-                <textarea class="textarea" name="description" rows="3" maxlength="500"></textarea>
+                Description<span class="required"> *</span>
+                <textarea class="textarea" name="description" rows="3" maxlength="500" required></textarea>
             </label>
             <div class="label-container password-requirements">
                 <ul>
