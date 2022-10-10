@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 :root{
+    --header-bg-color: rgb(255, 255, 255);
     --main-color: rgb(44, 94, 135);
     --main-color-hover: rgb(34, 74, 106);
 }
@@ -17,25 +18,15 @@ main{
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
-    padding: 1rem;
+    /* padding: 1rem; */
     margin: 0;
     flex: 1 0 auto;
 }
 
-footer{
-    background-color: var(--main-color) !important;
-    padding: 2rem !important;
-}
-footer a,p,strong{
-    color: white;
-}
-footer a:hover{
-    color: rgb(232, 232, 232);
-}
-
 /* NAVIGATION */
 .navbar{
-    background-color: rgb(234, 234, 234);
+    background-color: var(--header-bg-color);
+    box-shadow: 0px 0px 5px 1px #848484;
 }
 .btn-signup{
     background-color: var(--main-color);
@@ -44,6 +35,68 @@ footer a:hover{
 .btn-signup:hover{
     background-color: var(--main-color-hover);
     color: white;
+}
+
+/* HOME PAGE */
+.home-info-container{
+    margin: 2rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.home-info-box{
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    height: 300px;
+    min-width: 350px;
+    background-color: rgb(240, 240, 240);
+    padding: 2rem;
+}
+.home-info-box h1{
+    font-size: 1.6rem;
+}
+ion-icon{
+    font-size: 100px;  
+}
+.icon{
+    color: black;;
+}
+.icon-title{
+    display: flex;
+    align-items: center;
+}
+.home-banner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    background-image: url("https://images.unsplash.com/photo-1607081759141-5035e0a710a4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80");
+    background-position: center;
+    height: 500px;
+    gap: 1rem;
+}
+.home-banner-container h1{
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-align: center;
+}
+.home-banner-container h2{
+    font-size: 1.3rem;
+    text-align: center;
+}
+.home-info-box{
+    gap: 1rem;
+    text-align: center;
+}
+.about-btn-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.about-btn{
+    margin: 0.5rem 0.5rem;
 }
 
 /* TEACHER FORM */
@@ -100,47 +153,28 @@ footer a:hover{
     justify-content: center;
     flex-wrap: wrap;
 }
-.box{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 240px;
-    width: 200px;
-    margin-right: 10px;
-}
 .section .is-medium{
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
 }
-.about-btn-container{
+
+
+.login-container{
     display: flex;
+    margin-top: 0;
 }
 
-.about-btn {
-    margin-right: 1rem;
+/* FOOTER */
+footer{
+    background-color: var(--main-color) !important;
+    padding: 2rem !important;
+    margin-top: 2rem;
 }
-.about-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 3rem;
+footer a,p,strong{
+    color: white;
 }
-.icon {
-    color: black;;
-}
-.icon-title {
-    display: flex;
-    align-items: center;
-}
-ion-icon{
-    font-size: 100px;  
-}
-h1{
-    font-size:40px;
-}
-h2 {
-    font-size: 20px;
+footer a:hover{
+    color: rgb(232, 232, 232);
 }

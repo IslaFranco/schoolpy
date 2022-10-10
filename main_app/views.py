@@ -72,7 +72,6 @@ def teacher_signup(request):
     if request.method == 'POST':
         # capture form inputs from the usercreation form
         form = SignUpFormTeacher(request.POST)
-
         if form.is_valid():
             user = form.save()
         # programmatically log the user in
