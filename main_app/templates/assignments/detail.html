@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Assignment Details</h1>
+<div>
+    <div>
+        <span>{{ assignment.title }}</span>
+        <p>{{ assignment.subject }}</p>
+        <p>{{ assignment.description }}</p>
+        <p>{{ assignment.due_date }}</p>
+        <p>{{ assignment.submitted }} </p>
+    </div>
+    <div>
+        <a href="">Edit Assignment</a>  <!-- TODO need links -->
+        <a href=""> Delete assignment</a>  <!-- TODO need links -->
+    </div>
+</div>
+
+{% endblock %}

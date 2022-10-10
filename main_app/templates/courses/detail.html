@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Course Details</h1>
+<div>
+    <div>
+        <span>{{ course.title }}</span>
+        <p>Subject: {{ course.subject }}</p>
+        <p>Description: {{ course.description }}</p>
+        <p>Start Time: {{ course.start_time }}</p>
+        <p>End Time: {{ course.end_time }}</p>
+        <p>Level: {{ course.level }}</p>
+        <p>Units: {{ course.units }}</p>
+    </div>
+    <div>
+        <a href="">Edit Course</a>  <!-- TODO need links to edit course -->
+        <a href="">Delete Course</a>  <!-- TODO need links to delete course -->
+    </div>
+</div>
+
+{% endblock %}

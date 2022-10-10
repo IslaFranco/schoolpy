@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Assignments List</h1>
+<a href=""> <!-- TODO link to individual assignment  -->
+    <div>
+        <div>
+            <span>{{ assignment.title }}</span>
+            <p>{{ assignment.due_date }}</p>
+        </div>
+    </div>
+</a>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Delete Course</h1>
+
+<h3>Are you sure you want to Delete
+    <span>{{ object.title }}</span>?
+</h3>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Delete">
+    <a href="">Cancel</a> <!-- TODO add link to redirect to course details page when user wants to cancel -->
+</form>
+
+{% endblock %}
