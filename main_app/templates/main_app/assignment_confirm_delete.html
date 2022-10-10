@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Delete Assignment</h1>
+
+<h3>Are you sure you want to Delete 
+    <span>{{ object.title }}</span>?
+</h3>
+
+<form action="" method="POST">
+    <input type="submit" value="Delete">
+    <a href="">Cancel</a> <!-- TODO add link to redirect back to assignment detail page if user wants to cancel-->
+</form>
+
+{% endblock %}

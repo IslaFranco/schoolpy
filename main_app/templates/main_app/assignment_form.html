@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if object %}
+<h1>Edit {{ object.title }}</h1>
+{% else %}
+<h1>Add New Assignment</h1>
+{% endif %}
+
+<form action="" method="POST">
+    {%  csrf_token %}
+    <table>
+        <!-- TODO add Form to create New Assignment -->
+    </table>
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock %}
