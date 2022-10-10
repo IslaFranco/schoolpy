@@ -8,11 +8,14 @@ from .models import Student, Teacher
 def home(request):
     return render(request, 'index.html')
 
+
 def about(request):
     return render(request, 'about.html')
 
+
 def index(request):
     return render(request, 'index.html')
+
 
 def teacherLogin(request):
     username = request.POST['username']
@@ -22,6 +25,7 @@ def teacherLogin(request):
         login(request, user)
         return redirect('teacher-dashboard')
 
+
 def studentLogin(request):
     username = request.POST['username']
     password = request.POST['password']
@@ -29,6 +33,7 @@ def studentLogin(request):
     if request.method == 'POST':
         login(request, user)
         return redirect('student-dashboard')
+
 
 def teacherDashboard(request):
     students = Student.objects.all()
@@ -38,6 +43,12 @@ def teacherDashboard(request):
 def studentDashboard(request):
     students = Student.objects.filter(username=request.user)
     return render(request, 'student-dashboard.html', {'students': students})
+
+
+def student_detail(request, student_id):
+    student = Student.objects.get(id=student_id)
+
+    return render(request, 'students/detail.html', {'student': student})
 
 
 class SignUpFormTeacher(UserCreationForm):
