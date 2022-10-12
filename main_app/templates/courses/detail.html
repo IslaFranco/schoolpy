@@ -13,8 +13,8 @@
         <p>Units: {{ course.units }}</p>
     </div>
     <div>
-        <a href="">Edit Course</a>  <!-- TODO need links to edit course -->
-        <a href="">Delete Course</a>  <!-- TODO need links to delete course -->
+        <a href="{{% url 'course_update' course.id %}}">Edit Course</a>  <!-- TODO need links to edit course -->
+        <a href="{{% url 'course_delete' course.id %}}">Delete Course</a>  <!-- TODO need links to delete course -->
     </div>
 </div>
 

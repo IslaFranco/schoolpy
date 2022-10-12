@@ -8,8 +8,9 @@
 </h3>
 
 <form action="" method="POST">
+    {% csrf_token %}
     <input type="submit" value="Delete">
-    <a href="">Cancel</a> <!-- TODO add link to redirect back to assignment detail page if user wants to cancel-->
+    <a href="{% url 'assignments_detail' object.id %}">Cancel</a> <!-- TODO add link to redirect back to assignment detail page if user wants to cancel-->
 </form>
 
 {% endblock %}
