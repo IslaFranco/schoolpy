@@ -108,6 +108,7 @@ class Teacher(User):
     description = models.CharField(max_length=500)
 
     students = models.ManyToManyField(Student)
+    courses = models.ManyToManyField(Course)
     assignments = models.ManyToManyField(Assignment)
 
     class Meta:
