@@ -122,6 +122,8 @@ class Course(models.Model):
     term = models.CharField(max_length=100)
 
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student)
+    assignment = models.ForeignKey(Assignment)
 
     def __str__(self):
         return f'{self.subject}, {self.title}'
