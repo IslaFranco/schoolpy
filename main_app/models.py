@@ -108,6 +108,7 @@ class Teacher(User):
     description = models.CharField(max_length=500)
 
     students = models.ManyToManyField(Student)
+    assignments = models.ManyToManyField(Assignment)
 
     class Meta:
         verbose_name_plural = 'Teacher'
