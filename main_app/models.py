@@ -74,6 +74,7 @@ class Student(User):
     grade = models.CharField(max_length=100)
     dob = models.DateField()
 
+    courses = models.ManyToManyField(Course)
     assignments = models.ManyToManyField(Assignment)
 
     class Meta:
