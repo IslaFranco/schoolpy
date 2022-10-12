@@ -5,15 +5,47 @@
 {% if object %}
 <h1>Edit {{ object.title }}</h1>
 {% else %}
-<h1>Add New Assignment</h1>
+<h1>Create New Assignment</h1>
 {% endif %}
 
-<form action="" method="POST">
+<form action="{% url 'assignment_create' %}" method="POST" class="field">
     {%  csrf_token %}
-    <table>
-        {{ form.as_table }} <!-- TODO add Form to create New Assignment -->
-    </table>
-    <input type="submit" value="Submit">
+        <label class="label">
+            Title
+            <input class="input" type="text" name="title" 
+                {% if object %}
+                    value="{{ object.title }}"
+                {% endif %}
+            >
+        </label>
+        <label class="label">
+            Subject
+            <input class="input" type="text" name="subject"
+                {% if object %}
+                    value="{{ object.subject }}"
+                {% endif %}
+            >
+        </label>
+        <label class="label">
+            Due Date
+            <input class="input" type="date" name="due_date"
+                {% if object %}
+                    value="{{ object.due_date }}"
+                {% endif %}
+            >
+        </label>
+        <label class="label">
+            Description
+            <textarea class="textarea" name="description" rows="3" maxlength="255">
+                {% if object %}
+                    {{ object.description }}
+                {% endif %}
+            </textarea>
+        </label>
+        <label class="label">
+            Submitted
+            <input class="checkbox" type="checkbox" name="submitted">
+        </label>
+        <input class="button" type="submit" value="Submit">
 </form>
-
 {% endblock %}
