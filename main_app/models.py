@@ -82,6 +82,12 @@ class Student(User):
         verbose_name_plural = 'Student'
         app_label = 'auth'
 
+    def __str__(self):
+        return f'{self.last_name}, {self.first_name} - Grade: {self.grade}'
+
+    def get_absolute_url(self):
+        return reverse('student_detail', kwargs={'pk': self.id})
+
 
 # @receiver(post_save, sender=Student)
 # def create_user_profile(sender, instance, created, **kwargs):
@@ -114,3 +120,9 @@ class Teacher(User):
     class Meta:
         verbose_name_plural = 'Teacher'
         app_label = 'auth'
+
+    def __str__(self):
+        return f'{self.last_name}, {self.first_name} - Grade: {self.grade}'
+
+    def get_absolute_url(self):
+        return reverse('student_detail', kwargs={'pk': self.id})
