@@ -107,6 +107,8 @@ class Teacher(User):
     subject = models.CharField(max_length=100)
     description = models.CharField(max_length=500)
 
+    students = models.ManyToManyField(Student)
+
     class Meta:
         verbose_name_plural = 'Teacher'
         app_label = 'auth'
