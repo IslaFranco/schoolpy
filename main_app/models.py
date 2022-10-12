@@ -30,20 +30,6 @@ class User(AbstractUser):
     address = models.CharField(max_length=255)
 
 
-class Assignment(models.Model):
-    subject = models.CharField(max_length=100)
-    description = models.TextField(max_length=255)
-    title = models.CharField(max_length=100)
-    due_date = models.DateField()
-    submitted = models.BooleanField()
-
-    def __str__(self):
-        return f'{self.subject}, {self.title}'
-
-    def get_absolute_url(self):
-        return reverse('assignment_detail', kwargs={'pk': self.id})
-
-
 class StudentManager(BaseUserManager):
     def get_queryset(self, *args, **kwargs):
         results = super().get_queryset(*args, **kwargs)
@@ -109,6 +95,23 @@ class Teacher(User):
 
     def get_absolute_url(self):
         return reverse('student_detail', kwargs={'pk': self.id})
+
+
+class Assignment(models.Model):
+    subject = models.CharField(max_length=100)
+    description = models.TextField(max_length=255)
+    title = models.CharField(max_length=100)
+    due_date = models.DateField()
+    submitted = models.BooleanField()
+
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student)
+
+    def __str__(self):
+        return f'{self.subject}, {self.title}'
+
+    def get_absolute_url(self):
+        return reverse('assignment_detail', kwargs={'pk': self.id})
 
 
 class Course(models.Model):
