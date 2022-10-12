@@ -115,7 +115,8 @@ def student_signup(request):
 
 def assignments_index(request):
     assignments = Assignment.objects.all()
-    return render(request, 'assignments/index.html',{})
+    return render(request, 'assignments/index.html',{'assignments': assignments})
+
 
 def assignments_detail(request, assignment_id):
     assignments = Assignment.objects.get(id=assignment_id)

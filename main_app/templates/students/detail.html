@@ -16,10 +16,16 @@
     </div>
     <div class="columns">
         <div class="column is-half">
-            <h1>Courses</h1>
+            <h1>Courses Enrolled</h1>
+            <div class="box">
+                <a href="{% url 'course_index' %}">Course</a>
+                </div>
         </div>
         <div class="column is-half">
             <h1>Assignments</h1>
+            <div class="box">
+                <a href="{% url 'assignment_index' %}">Assignments</a>
+            </div>
         </div>
     </div>
 </div>
