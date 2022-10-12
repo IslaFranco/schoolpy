@@ -4,6 +4,8 @@ from django.contrib.auth.models import AbstractUser
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+from main_app.views import assignments_detail
+
 
 class User(AbstractUser):
 
@@ -71,6 +73,8 @@ class Student(User):
     student = StudentManager()
     grade = models.CharField(max_length=100)
     dob = models.DateField()
+
+    assignments = models.ManyToManyField(Assignment)
 
     class Meta:
         verbose_name_plural = 'Student'
