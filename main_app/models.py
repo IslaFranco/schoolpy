@@ -35,6 +35,12 @@ class Assignment(models.Model):
     due_date = models.DateField()
     submitted = models.BooleanField()
 
+    def __str__(self):
+        return f'{self.subject}, {self.title}'
+
+    def get_absolute_url(self):
+        return reverse('assignment_detail', kwargs={'pk': self.id})
+
 
 class Course(models.Model):
     subject = models.CharField(max_length=100)
@@ -45,6 +51,12 @@ class Course(models.Model):
     level = models.CharField(max_length=100)
     course_units = models.IntegerField()
     term = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f'{self.subject}, {self.title}'
+
+    def get_absolute_url(self):
+        return reverse('course_detail', kwargs={'pk': self.id})
 
 
 class StudentManager(BaseUserManager):
