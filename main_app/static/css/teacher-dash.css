@@ -1,0 +1,41 @@
+
+/* TEACHER DASHBOARD */
+.teacher-name, .student-name{
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+.teacher-info{
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+.student-container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 1rem;
+    gap: 1rem;
+}
+.student-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    width: 250px;
+    height: 200px;
+    /* background-color: rgb(233, 196, 106); */
+}
+.student-box a{
+    color: black;
+}
+.section .is-medium{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.login-container{
+    display: flex;
+    margin-top: 0;
+}
