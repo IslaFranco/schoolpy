@@ -2,7 +2,10 @@ from unicodedata import name
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
-from .models import Student, Teacher
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import Student, Teacher, Assignment, Course
 
 
 def home(request):
@@ -109,3 +112,43 @@ def student_signup(request):
     context = {'form': form, 'error_message': error_message}
     # redner a template with an empty form
     return render(request, 'registration/student_signup.html', context)
+
+def assignments_index(request):
+    assignments = Assignment.objects.all()
+    return render(request, 'assignments/index.html',{})
+
+def assignments_detail(request, assignment_id):
+    assignments = Assignment.objects.get(id=assignment_id)
+    return render(request, 'assignments/detail.html',{})
+
+class AssignmentCreate(CreateView):
+    model = Assignment
+    fields = ('subject', 'description', 'title', 'due_date', 'submitted')   
+
+class AssignmentUpdate(UpdateView):
+    model = Assignment
+    fields = '__all__'
+
+class AssignmentDelete(DeleteView):
+    model = Assignment
+    success_url = '/assignments/'          
+
+def courses_index(request):
+    courses = Course.objects.all()
+    return render(request, 'courses/index.html',{})
+
+def courses_detail(request):
+    return render(request, 'courses/detail.html',{})  
+
+class CourseCreate(CreateView):
+    model = Course
+    fields = ('subject', 'description', 'title', 'start_time', 'end_time', 'level', 'course_units', 'term')
+
+class CourseUpdate(UpdateView):
+    model = Course
+    fields = '__all__'
+
+class CourseDelete(DeleteView):
+    model = Course
+    success_url = '/courses/'
+

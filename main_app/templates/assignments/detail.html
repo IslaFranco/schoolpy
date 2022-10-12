@@ -11,8 +11,8 @@
         <p>{{ assignment.submitted }} </p>
     </div>
     <div>
-        <a href="">Edit Assignment</a>  <!-- TODO need links -->
-        <a href=""> Delete assignment</a>  <!-- TODO need links -->
+        <a href="{% url 'assignment_update' assignment.id %}">Edit Assignment</a>  <!-- TODO need links -->
+        <a href="{% url 'assignment_delete' assignment.id %}"> Delete assignment</a>  <!-- TODO need links -->
     </div>
 </div>
 

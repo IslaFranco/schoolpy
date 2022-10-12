@@ -11,7 +11,7 @@
 <form action="" method="POST">
     {%  csrf_token %}
     <table>
-        <!-- TODO add Form to create New Course -->
+        {{ form.as_table }}<!-- TODO add Form to create New Course -->
     </table>
     <input type="submit" value="Submit">
 </form>
