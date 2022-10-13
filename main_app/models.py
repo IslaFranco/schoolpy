@@ -6,7 +6,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
 
-
 class User(AbstractUser):
 
     class Role(models.TextChoices):
@@ -56,7 +55,7 @@ class Course(models.Model):
 
     def __str__(self):
         return f'{self.subject}, {self.title}'
-
+        
     def get_absolute_url(self):
         return reverse('course_detail', kwargs={'course_id': self.id})
 
@@ -74,19 +73,9 @@ class Student(User):
     grade = models.CharField(max_length=100)
     dob = models.DateField()
 
-    teachers = models.ManyToManyField(Teacher)
-    courses = models.ManyToManyField(Course)
-    assignments = models.ManyToManyField(Assignment)
-
     class Meta:
         verbose_name_plural = 'Student'
         app_label = 'auth'
-
-    def __str__(self):
-        return f'{self.last_name}, {self.first_name} - Grade: {self.grade}'
-
-    def get_absolute_url(self):
-        return reverse('student_detail', kwargs={'pk': self.id})
 
 
 class TeacherManager(BaseUserManager):
@@ -103,54 +92,6 @@ class Teacher(User):
     subject = models.CharField(max_length=100)
     description = models.CharField(max_length=500)
 
-    students = models.ManyToManyField(Student)
-    courses = models.ManyToManyField(Course)
-    assignments = models.ManyToManyField(Assignment)
-
     class Meta:
         verbose_name_plural = 'Teacher'
         app_label = 'auth'
-
-    def __str__(self):
-        return f'{self.last_name}, {self.first_name} - Grade: {self.grade}'
-
-    def get_absolute_url(self):
-        return reverse('student_detail', kwargs={'pk': self.id})
-
-
-class Assignment(models.Model):
-    subject = models.CharField(max_length=100)
-    description = models.TextField(max_length=255)
-    title = models.CharField(max_length=100)
-    due_date = models.DateField()
-    submitted = models.BooleanField()
-
-    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
-    student = models.ForeignKey(Student)
-
-    def __str__(self):
-        return f'{self.subject}, {self.title}'
-
-    def get_absolute_url(self):
-        return reverse('assignment_detail', kwargs={'pk': self.id})
-
-
-class Course(models.Model):
-    subject = models.CharField(max_length=100)
-    description = models.TextField(max_length=255)
-    title = models.CharField(max_length=100)
-    start_time = models.DateField()
-    end_time = models.DateField()
-    level = models.CharField(max_length=100)
-    course_units = models.IntegerField()
-    term = models.CharField(max_length=100)
-
-    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
-    student = models.ForeignKey(Student)
-    assignment = models.ForeignKey(Assignment)
-
-    def __str__(self):
-        return f'{self.subject}, {self.title}'
-
-    def get_absolute_url(self):
-        return reverse('course_detail', kwargs={'pk': self.id})
