@@ -6,6 +6,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
 
+
 class User(AbstractUser):
 
     class Role(models.TextChoices):
@@ -55,7 +56,7 @@ class Course(models.Model):
 
     def __str__(self):
         return f'{self.subject}, {self.title}'
-        
+
     def get_absolute_url(self):
         return reverse('course_detail', kwargs={'course_id': self.id})
 
@@ -72,6 +73,8 @@ class Student(User):
     student = StudentManager()
     grade = models.CharField(max_length=100)
     dob = models.DateField()
+
+    models.ManyToManyField(Course)
 
     class Meta:
         verbose_name_plural = 'Student'
@@ -91,6 +94,9 @@ class Teacher(User):
 
     subject = models.CharField(max_length=100)
     description = models.CharField(max_length=500)
+
+    courses = models.ManyToManyField(Course)
+    students = models.ManyToManyField(Student)
 
     class Meta:
         verbose_name_plural = 'Teacher'
