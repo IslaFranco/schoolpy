@@ -117,6 +117,7 @@ def assignments_index(request):
     assignments = Assignment.objects.all()
     return render(request, 'assignments/index.html',{'assignments': assignments})
 
+
 def assignments_detail(request, assignment_id):
     assignments = Assignment.objects.get(id=assignment_id)
     return render(request, 'assignments/detail.html',{})

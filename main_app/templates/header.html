@@ -13,9 +13,18 @@
 
     <div class="navbar-menu" id="navMenu">
         <div class="navbar-start">
+            {% if user.role == "TEACHER" %}
             <a class="navbar-item" href="{% url 'teacher-dashboard' %}">
-            Teacher Dashboard
+            Dashboard
             </a>
+            <a class="navbar-item" href="{% url 'course_create' %}">Create a Course</a>
+            <a class="navbar-item" href="{% url 'assignment_create' %}">Create Assignment</a>
+            {% endif %}
+            {% if user.role == "STUDENT" %}
+            <a class="navbar-item" href="{% url 'student-dashboard' %}">
+            Dashboard
+            </a>
+            {% endif %}
             <a class="navbar-item" href="{% url 'about' %}">
                 About
             </a> 
@@ -24,7 +33,7 @@
         <div class="navbar-end">
             <div class="navbar-item">
             <div class="buttons">
-                {% if user.role == "TEACHER" %}
+                {% if user.role == "TEACHER" or user.role == "STUDENT" %}
                 <a class="button btn-signup" href="{% url 'logout' %}">
                     <strong>Logout</strong>
                 </a>

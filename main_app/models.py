@@ -1,9 +1,10 @@
+from operator import imod
 from django.db import models
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-
+from django.urls import reverse
 
 class User(AbstractUser):
 
@@ -30,21 +31,33 @@ class User(AbstractUser):
 
 class Assignment(models.Model):
     subject = models.CharField(max_length=100)
-    description = models.TextField(max_length=255)
+    description = models.TextField(max_length=1000)
     title = models.CharField(max_length=100)
     due_date = models.DateField()
     submitted = models.BooleanField()
 
+    def __str__(self):
+        return f'{self.subject}, {self.title}'
+
+    def get_absolute_url(self):
+        return reverse('assignment_detail', kwargs={'pk': self.id})
+
 
 class Course(models.Model):
     subject = models.CharField(max_length=100)
-    description = models.TextField(max_length=255)
+    description = models.TextField(max_length=1000)
     title = models.CharField(max_length=100)
     start_time = models.DateField()
     end_time = models.DateField()
     level = models.CharField(max_length=100)
     course_units = models.IntegerField()
     term = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f'{self.subject}, {self.title}'
+        
+    def get_absolute_url(self):
+        return reverse('course_detail', kwargs={'pk': self.id})
 
 
 class StudentManager(BaseUserManager):
@@ -63,16 +76,6 @@ class Student(User):
     class Meta:
         verbose_name_plural = 'Student'
         app_label = 'auth'
-
-
-# @receiver(post_save, sender=Student)
-# def create_user_profile(sender, instance, created, **kwargs):
-#     if created and instance.role == "STUDENT":
-#         StudentProfile.objects.create(user=instance)
-
-
-# class StudentProfile(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
 
 class TeacherManager(BaseUserManager):

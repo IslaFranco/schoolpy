@@ -22,6 +22,15 @@ main{
     margin: 0;
     flex: 1 0 auto;
 }
+/* MAIN */
+.main-btn{
+    color: white;
+    background-color: var(--main-color);
+}
+.main-btn:hover{
+    color: white;
+    background-color: var(--main-color-hover);
+}
 
 /* NAVIGATION */
 .navbar{
