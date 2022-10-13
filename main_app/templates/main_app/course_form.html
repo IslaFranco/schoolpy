@@ -1,19 +1,85 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-{% if object %}
-<h1>Edit {{ object.title }}</h1>
-{% else %}
-<h1>Add New Course</h1>
-{% endif %}
-
-<form action="" method="POST">
-    {%  csrf_token %}
-    <table>
-        {{ form.as_table }}<!-- TODO add Form to create New Course -->
-    </table>
-    <input type="submit" value="Submit">
-</form>
-
+<div class="box page-header">
+    {% if object %}
+        <h1>Edit {{ object.title }}</h1>
+    {% else %}
+        <h1>Create New Course</h1>
+    {% endif %}
+</div>
+<div class="col-container">
+    <form action="{% url 'course_create' %}" method="POST" class="field">
+        {%  csrf_token %}
+            <label class="label">
+                Title
+                <input class="input" type="text" name="title" 
+                    {% if object %}
+                        value="{{ object.title }}"
+                    {% endif %}
+                >
+            </label>
+            <label class="label">
+                Subject
+                <input class="input" type="text" name="subject"
+                    {% if object %}
+                        value="{{ object.subject }}"
+                    {% endif %}
+                >
+            </label>
+            <div class="row-form-input">
+                <label class="label">
+                    Start Date
+                    <input class="input" type="date" name="start_time"
+                        {% if object %}
+                            value="{{ object.start_time }}"
+                        {% endif %}
+                    >
+                </label>
+                <label class="label">
+                    End Date
+                    <input class="input" type="date" name="end_time"
+                        {% if object %}
+                            value="{{ object.start_time }}"
+                        {% endif %}
+                    >
+                </label>
+            </div>
+            <div class="row-form-input">
+                <label class="label">
+                    Level
+                    <input class="input" type="text" name="level"
+                        {% if object %}
+                            value="{{ object.level }}"
+                        {% endif %}
+                    >
+                </label>
+                <label class="label">
+                    Course Units
+                    <input class="input" type="number" name="course_units"
+                        {% if object %}
+                            value="{{ object.course_units }}"
+                        {% endif %}
+                    >
+                </label>
+            </div>
+            <label class="label">
+                Term
+                <input class="input" type="number" name="term"
+                    {% if object %}
+                        value="{{ object.term }}"
+                    {% endif %}
+                >
+            </label>
+            <label class="label">
+                Description
+                {% if object %}
+                <textarea class="textarea" name="description" rows="3" maxlength="1000">{{ object.description }}</textarea>
+                {% else %}
+                <textarea class="textarea" name="description" rows="3" maxlength="1000"></textarea>
+                {% endif %}
+            </label>
+            <input class="button" type="submit" value="Submit">
+    </form>
+</div>
 {% endblock %}
