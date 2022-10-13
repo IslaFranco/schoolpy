@@ -1,14 +1,15 @@
 {% extends 'base.html' %} 
 
 {% block content %}
+<div class="box page-header">
+    <h1>Teacher Dashboard</h1>
+</div>
 <div class="student-container">
 {% for student in students %}
-<a href="/student/{{ student.id }}">
-    <div class="box">
-        <h3 class="student-name">{{student.first_name}} {{student.last_name}}</h3>
+    <div class="box student-box">
+        <a href="/student/{{ student.id }}"><h3 class="student-name">{{student.first_name}} {{student.last_name}}</h3></a>
         <h4>Grade: {{student.grade}}</h4>
     </div>
-</a>
 {% endfor %}
 </div>
 {% endblock %} 
