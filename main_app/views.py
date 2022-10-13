@@ -119,8 +119,8 @@ def assignments_index(request):
 
 
 def assignments_detail(request, assignment_id):
-    assignments = Assignment.objects.get(id=assignment_id)
-    return render(request, 'assignments/detail.html',{})
+    assignment = Assignment.objects.get(id=assignment_id)
+    return render(request, 'assignments/detail.html',{ 'assignment': assignment})
 
 class AssignmentCreate(CreateView):
     model = Assignment
@@ -136,10 +136,11 @@ class AssignmentDelete(DeleteView):
 
 def courses_index(request):
     courses = Course.objects.all()
-    return render(request, 'courses/index.html',{})
+    return render(request, 'courses/index.html',{'courses': courses})
 
-def courses_detail(request):
-    return render(request, 'courses/detail.html',{})  
+def courses_detail(request, course_id):
+    course = Course.objects.get(id=course_id)
+    return render(request, 'courses/detail.html',{ 'course': course })  
 
 class CourseCreate(CreateView):
     model = Course
