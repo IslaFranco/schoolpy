@@ -40,7 +40,7 @@ class Assignment(models.Model):
         return f'{self.subject}, {self.title}'
 
     def get_absolute_url(self):
-        return reverse('assignment_detail', kwargs={'pk': self.id})
+        return reverse('assignment_detail', kwargs={'assignment_id': self.id})
 
 
 class Course(models.Model):
@@ -57,7 +57,7 @@ class Course(models.Model):
         return f'{self.subject}, {self.title}'
         
     def get_absolute_url(self):
-        return reverse('course_detail', kwargs={'pk': self.id})
+        return reverse('course_detail', kwargs={'course_id': self.id})
 
 
 class StudentManager(BaseUserManager):
