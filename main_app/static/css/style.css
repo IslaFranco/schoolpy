@@ -22,6 +22,12 @@ main{
     margin: 0;
     flex: 1 0 auto;
 }
+form{
+    width: 100%;
+    max-width: 600px;
+    padding: 0 1rem;
+}
+
 /* MAIN */
 .main-btn{
     color: white;
@@ -30,6 +36,25 @@ main{
 .main-btn:hover{
     color: white;
     background-color: var(--main-color-hover);
+}
+.row-form-input{
+    display: flex;
+}
+.col-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.page-header{
+    display: flex;
+    justify-content: center;
+    background-color: rgb(230, 230, 230);
+    height: auto;
+}
+.page-header h1{
+    font-size: 1.3rem;
+    font-weight: 700;
 }
 
 /* NAVIGATION */
