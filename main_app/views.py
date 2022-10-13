@@ -129,6 +129,7 @@ class AssignmentCreate(CreateView):
 class AssignmentUpdate(UpdateView):
     model = Assignment
     fields = '__all__'
+    success_url = '/assignments/'
 
 class AssignmentDelete(DeleteView):
     model = Assignment
@@ -140,7 +141,7 @@ def courses_index(request):
 
 def courses_detail(request, course_id):
     course = Course.objects.get(id=course_id)
-    return render(request, 'courses/detail.html',{ 'course': course })  
+    return render(request, 'courses/detail.html',{'course': course})  
 
 class CourseCreate(CreateView):
     model = Course

@@ -4,12 +4,14 @@
 
 <h1>Assignments List</h1>
 {% for assignment in assignments %}
+<a href="/assignments/{{ assignment.id }}">
 <div class="box">
     <div>
-        <a>{{ assignment.title }}</a>
+        <p>{{ assignment.title }}</p>
         <p>Due Date: {{ assignment.due_date }}</p>
     </div>
 </div>
-
+</a>
 {% endfor %}
+
 {% endblock %}
