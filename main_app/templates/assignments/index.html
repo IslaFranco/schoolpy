@@ -3,12 +3,13 @@
 {% block content %}
 
 <h1>Assignments List</h1>
-<a href=""> <!-- TODO link to individual assignment  -->
+{% for assignment in assignments %}
+<div class="box">
     <div>
-        <div>
-            <span>{{ assignment.title }}</span>
-            <p>Due Date: {{ assignment.due_date }}</p>
-        </div>
+        <a>{{ assignment.title }}</a>
+        <p>Due Date: {{ assignment.due_date }}</p>
     </div>
-</a>
+</div>
+
+{% endfor %}
 {% endblock %}

@@ -1,5 +1,6 @@
 ## SchoolPy
-- SchoolPy is a learnign management 
+- SchoolPy is a learning management platform that allows students and teachers to be organized. Features such as creating assignments, adding courses you're currently enrolled in, and general class announcements.
+
 
 ## User Stories
 - As a Teacher, I want to be able to create/sign up for an account with SchoolPy.
@@ -19,8 +20,7 @@
 
 
 ## Screenshots
--
--
+![wireframe screenshot](/main_app/assets/screenshot.png)
 
 ## Getting Started
 - [click here](https://trello.com/b/5WN8Jh03/project-4) to see our Trello Board.
