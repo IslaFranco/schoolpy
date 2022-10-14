@@ -6,8 +6,8 @@
 </div>
 <div class="row-container">
 {% for assignment in assignments %}
-    <div class="box assignment-box">
-        <a href="{{assignment.id}}">{{ assignment.title }}</a>
+    <div class="box horz-md-box">
+        <h3><a href="{{assignment.id}}">{{ assignment.title }}</a></h3>
         <p>Due Date: {{ assignment.due_date }}</p>
     </div>
 {% endfor %}
