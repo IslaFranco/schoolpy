@@ -113,45 +113,60 @@ def student_signup(request):
     # redner a template with an empty form
     return render(request, 'registration/student_signup.html', context)
 
+
 def assignments_index(request):
     assignments = Assignment.objects.all()
-    return render(request, 'assignments/index.html',{'assignments': assignments})
+    return render(request, 'assignments/index.html', {'assignments': assignments})
 
 
 def assignments_detail(request, assignment_id):
     assignment = Assignment.objects.get(id=assignment_id)
-    return render(request, 'assignments/detail.html',{ 'assignment': assignment})
+    return render(request, 'assignments/detail.html', {'assignment': assignment})
+
 
 class AssignmentCreate(CreateView):
     model = Assignment
-    fields = ('subject', 'description', 'title', 'due_date', 'submitted')   
+    fields = ('subject', 'description', 'title', 'due_date', 'submitted')
+
 
 class AssignmentUpdate(UpdateView):
     model = Assignment
     fields = '__all__'
-    success_url = '/assignments/'
+
 
 class AssignmentDelete(DeleteView):
     model = Assignment
-    success_url = '/assignments/'          
+    success_url = '/assignments/'
 
-def courses_index(request):
-    courses = Course.objects.all()
-    return render(request, 'courses/index.html',{'courses': courses})
+
+def assoc_course(request, teacher_id, course_id):
+    Teacher.objects.get(id=teacher_id).courses.add(course_id)
+    return redirect('courses/index.html', teacher_id=teacher_id)
+
+
+def courses_index(request, teacher_id):
+
+    teacher = Teacher.objects.get(id=teacher_id)
+
+    return render(request, 'courses/index.html', {'teacher': teacher})
+
 
 def courses_detail(request, course_id):
     course = Course.objects.get(id=course_id)
-    return render(request, 'courses/detail.html',{'course': course})  
+    return render(request, 'courses/detail.html', {'course': course})
+
 
 class CourseCreate(CreateView):
     model = Course
-    fields = ('subject', 'description', 'title', 'start_time', 'end_time', 'level', 'course_units', 'term')
+    fields = ('subject', 'description', 'title', 'start_time',
+              'end_time', 'level', 'course_units', 'term')
+
 
 class CourseUpdate(UpdateView):
     model = Course
     fields = '__all__'
 
+
 class CourseDelete(DeleteView):
     model = Course
     success_url = '/courses/'
-
