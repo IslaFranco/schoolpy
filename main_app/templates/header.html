@@ -1,51 +1,73 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
+        {% if user.role == "TEACHER" %}
+        <a class="navbar-item" href="{% url 'teacher-dashboard' %}">
+            Schoolpy
+        </a>
+        {% else %}
         <a class="navbar-item" href="{% url 'home' %}">
             Schoolpy
         </a>
-    
+        {% endif %}
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
         </a>
     </div>
-
     <div class="navbar-menu" id="navMenu">
         <div class="navbar-start">
             {% if user.role == "TEACHER" %}
             <a class="navbar-item" href="{% url 'teacher-dashboard' %}">
-            Dashboard
+                Dashboard
             </a>
-            <a class="navbar-item" href="{% url 'course_create' %}">Create a Course</a>
-            <a class="navbar-item" href="{% url 'assignment_create' %}">Create Assignment</a>
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                  Courses
+                </a>
+                <div class="navbar-dropdown">
+                    <a class="navbar-item" href="{% url 'course_index' %}">View All Courses</a>
+                    <a class="navbar-item" href="{% url 'course_create' %}">Create a Course</a>
+                    <hr class="navbar-divider">
+                </div>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                  Assignments
+                </a>
+                <div class="navbar-dropdown">
+                    <a class="navbar-item" href="{% url 'assignment_index' %}">
+                        View All Assignments
+                    </a>
+                    <a class="navbar-item" href="{% url 'assignment_create' %}">Create Assignment</a>
+                </div>
+            </div>
             {% endif %}
             {% if user.role == "STUDENT" %}
             <a class="navbar-item" href="{% url 'student-dashboard' %}">
-            Dashboard
+                Dashboard
             </a>
             {% endif %}
+            {% if user.role == None %}
             <a class="navbar-item" href="{% url 'about' %}">
                 About
             </a> 
+            {% endif %}
         </div>
-    
         <div class="navbar-end">
             <div class="navbar-item">
-            <div class="buttons">
                 {% if user.role == "TEACHER" or user.role == "STUDENT" %}
-                <a class="button btn-signup" href="{% url 'logout' %}">
-                    <strong>Logout</strong>
+                <a class="button main-btn" href="{% url 'logout' %}">
+                    Logout
                 </a>
                 {% else %}
-                <a class="button btn-signup" href="{% url 'teacher-signup' %}">
-                    <strong>Teacher Login / Sign up</strong>
+                <a class="button main-btn" href="{% url 'teacher-signup' %}">
+                    Teacher Login / Sign up
                 </a>
-                <a class="button btn-signup" href="{% url 'student-signup' %}">
-                    <strong>Student Login / Sign up</strong>
+                <a class="button second-btn" href="{% url 'student-signup' %}">
+                    Student Login / Sign up
                 </a>
                 {% endif %}
-            </div>
             </div>
         </div>
     </div>
