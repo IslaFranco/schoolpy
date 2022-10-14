@@ -41,8 +41,6 @@ body{
 main{
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
-    /* padding: 1rem; */
     margin: 0;
     flex: 1 0 auto;
 }
@@ -199,52 +197,13 @@ form{
 }
 /* END HOME PAGE */
 
-.about-btn-container{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-.about-btn{
-    margin: 0.5rem 0.5rem;
-}
-
-/* TEACHER DASHBOARD */
-.teacher-name, .student-name{
-    font-size: 1.4rem;
-    font-weight: 700;
-}
-.teacher-info{
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-}
-.student-container{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: 1rem;
-    gap: 1rem;
-}
-.section .is-medium{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-/* STUDENT DETAIL PAGE */
+/* STUDENT DETAIL PAGE & DASHBOARD */
 .detail-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 1rem;
-}
-.avatar{
-    background-color: #C6C5B9;
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
 }
 .avatar-background h1, .avatar-background h2, .avatar-background p{
     color: white;
@@ -263,21 +222,6 @@ form{
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-}
-.detail-student-title h1{
-    font-size: 1.4rem;
-    font-weight: 700;
-}
-.student-ph-dob-container{
-    display: flex;
-    justify-content: center;
-    gap: 0.7rem;
-    flex-wrap: wrap;
-    margin-top: 1rem;
-}
-.student-ph-dob{
-    display: flex;
-    flex-direction: column;
 }
 
 /* ASSIGNMENTS INDEX */
