@@ -4,6 +4,10 @@
         <a class="navbar-item" href="{% url 'teacher-dashboard' %}">
             Schoolpy
         </a>
+        {% elif user.role == "STUDENT" %}
+        <a class="navbar-item" href="{% url 'student-dashboard' %}">
+            Schoolpy
+        </a>
         {% else %}
         <a class="navbar-item" href="{% url 'home' %}">
             Schoolpy
