@@ -3,8 +3,14 @@
 
 
 ## User Stories
-- As a Teacher, I want to be able to create/sign up for an account with SchoolPy.
+- As a Teacher, I want to be able to login/sign up for an account with SchoolPy.
+- As a Teacher, I want to add homework assignments to display for my specific students enrolled in my class, so they are on track.
+- As a Teacher, I want to be able to Edit and Delete an Assignment, in case I, the Teacher, needs to change the due date.
+- As a Teacher, I want to add different courses i'm teaching, so it is well organized.
+- As a Teacher, I want to edit or delete my courses, in case I need to make adjustments.
 - As a Student, I want to be able to login/sign up for an account with SchoolPy.
+- As a Student, I want to be able to have my courses and assignments displayed for me, so that I know as a student, what to work on and to be organized.
+- As a Student, I want to be able to go through my assignments and check submitted, to know if that specific assignment is completed or not.
 
 
 ## Technology Used
@@ -33,3 +39,5 @@
 -
 
 ## Future Enhancements
+- Add an Attendance Form
+- Add an Image Avatar for students to pick on there dashboard
