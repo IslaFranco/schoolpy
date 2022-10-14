@@ -6,23 +6,23 @@
         <div class="avatar">
         </div>
         <div class="detail-student-title">
-            <h1>{{ student.first_name }} {{ student.last_name }}</h1>
-            <h3>Grade: {{ student.grade }}</h3>
-            <h3>{{ student.sex }}</h3>
-            <h3 class="student-ph-dob">DOB: {{ student.dob }}</h3>
-            <h3 class="student-ph-dob">PH#: {{ student.phone_number }}</h3>
-            <h3 class="student-ph-dob">Address: {{ student.address }}</h3>
+            <h2>{{ student.first_name }} {{ student.last_name }}</h2>
+            <p>Grade: {{ student.grade }}</p>
+            <p>{{ student.sex }}</p>
+            <p class="student-ph-dob">DOB: {{ student.dob }}</p>
+            <p class="student-ph-dob">PH#: {{ student.phone_number }}</p>
+            <p class="student-ph-dob">Address: {{ student.address }}</p>
         </div>
     </div>
     <div class="columns">
         <div class="column is-half">
-            <h1>Courses Enrolled</h1>
+            <h3>Courses Enrolled</h3>
             <div class="box">
                 <a href="{% url 'course_index' %}">Course</a>
                 </div>
         </div>
         <div class="column is-half">
-            <h1>Assignments</h1>
+            <h3>Assignments</h3>
             <div class="box">
                 <a href="{% url 'assignment_index' %}">Assignments</a>
             </div>
