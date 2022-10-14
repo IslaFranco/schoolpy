@@ -1,19 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Assignment Details</h1>
-<div>
+<div class="box page-header">
+    <h2>{{ assignment.subject }} - {{ assignment.title }}</h2>
+</div>
+<div class="col-container">
     <div>
-        <span>{{ assignment.title }}</span>
-        <p>{{ assignment.subject }}</p>
-        <p>{{ assignment.description }}</p>
-        <p>{{ assignment.due_date }}</p>
-        <p>{{ assignment.submitted }} </p>
+        <div class="box col-container">
+            <h3>Due Date: </h3>
+            <p class="text-center">{{ assignment.due_date }}</p>
+        </div>
+        <div class="box col-container">
+            <h3>Assignment Description</h3>
+            <p class="text-center">{{ assignment.description }}</p>
+        </div>
     </div>
     <div>
-        <a href="{% url 'assignment_update' assignment.id %}">Edit Assignment</a>  <!-- TODO need links -->
-        <a href="{% url 'assignment_delete' assignment.id %}"> Delete assignment</a>  <!-- TODO need links -->
+        {% if user.role == "TEACHER" %}
+        <a class="button is-info" href="{% url 'assignment_update' assignment.id %}">Edit Assignment</a>
+        <a class="button is-danger" href="{% url 'assignment_delete' assignment.id %}"> Delete assignment</a>
+        {% endif %}
     </div>
 </div>
-
 {% endblock %}

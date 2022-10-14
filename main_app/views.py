@@ -37,21 +37,22 @@ def studentLogin(request):
         login(request, user)
         return redirect('student-dashboard')
 
-
+@login_required
 def teacherDashboard(request):
     students = Student.objects.all()
     return render(request, 'teacher-dashboard.html', {'students': students})
 
-
+@login_required
 def studentDashboard(request):
     students = Student.objects.filter(username=request.user)
     return render(request, 'student-dashboard.html', {'students': students})
 
-
+@login_required
 def student_detail(request, student_id):
+    courses = Course.objects.all()
+    assignments = Assignment.objects.all()
     student = Student.objects.get(id=student_id)
-
-    return render(request, 'students/detail.html', {'student': student})
+    return render(request, 'students/detail.html', {'student': student, 'assignments': assignments, 'courses': courses})
 
 
 class SignUpFormTeacher(UserCreationForm):
@@ -113,45 +114,48 @@ def student_signup(request):
     # redner a template with an empty form
     return render(request, 'registration/student_signup.html', context)
 
+@login_required
 def assignments_index(request):
     assignments = Assignment.objects.all()
     return render(request, 'assignments/index.html',{'assignments': assignments})
 
-
+@login_required
 def assignments_detail(request, assignment_id):
     assignment = Assignment.objects.get(id=assignment_id)
     return render(request, 'assignments/detail.html',{ 'assignment': assignment})
 
-class AssignmentCreate(CreateView):
+class AssignmentCreate(LoginRequiredMixin, CreateView):
     model = Assignment
     fields = ('subject', 'description', 'title', 'due_date', 'submitted')   
 
-class AssignmentUpdate(UpdateView):
+class AssignmentUpdate(LoginRequiredMixin, UpdateView):
     model = Assignment
     fields = '__all__'
     success_url = '/assignments/'
 
-class AssignmentDelete(DeleteView):
+class AssignmentDelete(LoginRequiredMixin, DeleteView):
     model = Assignment
     success_url = '/assignments/'          
 
+@login_required
 def courses_index(request):
     courses = Course.objects.all()
     return render(request, 'courses/index.html',{'courses': courses})
 
+@login_required
 def courses_detail(request, course_id):
     course = Course.objects.get(id=course_id)
     return render(request, 'courses/detail.html',{'course': course})  
 
-class CourseCreate(CreateView):
+class CourseCreate(LoginRequiredMixin, CreateView):
     model = Course
     fields = ('subject', 'description', 'title', 'start_time', 'end_time', 'level', 'course_units', 'term')
 
-class CourseUpdate(UpdateView):
+class CourseUpdate(LoginRequiredMixin, UpdateView):
     model = Course
     fields = '__all__'
 
-class CourseDelete(DeleteView):
+class CourseDelete(LoginRequiredMixin, DeleteView):
     model = Course
     success_url = '/courses/'
 
