@@ -11,7 +11,7 @@
 <form action="" method="POST">
     {% csrf_token %}
     <input type="submit" value="Delete">
-    <a href="{% url 'courses_detail' object.id %}">Cancel</a> <!-- TODO add link to redirect to course details page when user wants to cancel -->
+    <a href="{% url 'course_detail' course.id %}">Cancel</a> <!-- TODO add link to redirect to course details page when user wants to cancel -->
 </form>
 
 {% endblock %}

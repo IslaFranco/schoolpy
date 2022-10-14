@@ -2,26 +2,24 @@
 
 {% block content %}
 <div class="box page-header">
-    <h2>{{ course.subject }}</h2>
-    <h3>{{ course.title }}</h3>
+    <h2>{{ assignment.subject }} - {{ assignment.title }}</h2>
 </div>
-<div>
-    <div class="box row-container">
-        <p>Start Time: {{ course.start_time }}</p>
-        <p>End Time: {{ course.end_time }}</p>
-        <p>Level: {{ course.level }}</p>
-        <p>Units: {{ course.units }}</p>
-    </div>
-    <div class="box">
-        <h3>Description</h3>
-        <p class="text-center">{{ course.description }}</p>
+<div class="col-container">
+    <div>
+        <div class="box col-container">
+            <h3>Due Date: </h3>
+            <p class="text-center">{{ assignment.due_date }}</p>
+        </div>
+        <div class="box col-container">
+            <h3>Assignment Description</h3>
+            <p class="text-center">{{ assignment.description }}</p>
+        </div>
     </div>
     <div>
         {% if user.role == "TEACHER" %}
-        <a class="button is-info" href="{{% url 'course_update' course.id %}}">Edit Course</a>
-        <a class="button is-danger" href="{{% url 'course_delete' course.id %}}">Delete Course</a>
+        <a class="button is-info" href="{% url 'assignment_update' assignment.id %}">Edit Assignment</a>
+        <a class="button is-danger" href="{% url 'assignment_delete' assignment.id %}"> Delete assignment</a>
         {% endif %}
     </div>
 </div>
-
 {% endblock %}
