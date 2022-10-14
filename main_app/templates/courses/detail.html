@@ -1,21 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Course Details</h1>
-<div>
+<div class="box page-header">
+    <h2>{{ assignment.subject }} - {{ assignment.title }}</h2>
+</div>
+<div class="col-container">
     <div>
-        <span>{{ course.title }}</span>
-        <p>Subject: {{ course.subject }}</p>
-        <p>Description: {{ course.description }}</p>
-        <p>Start Time: {{ course.start_time }}</p>
-        <p>End Time: {{ course.end_time }}</p>
-        <p>Level: {{ course.level }}</p>
-        <p>Units: {{ course.units }}</p>
+        <div class="box col-container">
+            <h3>Due Date: </h3>
+            <p class="text-center">{{ assignment.due_date }}</p>
+        </div>
+        <div class="box col-container">
+            <h3>Assignment Description</h3>
+            <p class="text-center">{{ assignment.description }}</p>
+        </div>
     </div>
     <div>
-        <a href="{% url 'course_update' course.id %}">Edit Course</a>  <!-- TODO need links to edit course -->
-        <a href="{% url 'course_delete' course.id %}">Delete Course</a>  <!-- TODO need links to delete course -->
+        {% if user.role == "TEACHER" %}
+        <a class="button is-info" href="{% url 'assignment_update' assignment.id %}">Edit Assignment</a>
+        <a class="button is-danger" href="{% url 'assignment_delete' assignment.id %}"> Delete assignment</a>
+        {% endif %}
     </div>
 </div>
-
 {% endblock %}

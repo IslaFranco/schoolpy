@@ -1,101 +1,103 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<!-- teacher signup -->
-<div class="columns" >
-    <div class="column">
-        <!-- teacher login -->
-        <h1 class="form-title">Teacher Login</h1>
-        {% if error_message %}
-            <p class="error-text">{{ error_message }}</p>
-        {% endif %}
-        <form class="field" action="{% url 'teacher-login' %}" method="POST">
-            {% csrf_token %}
-            <label class="label">
-                Username<span class="required"> *</span>
-                <input class="input" type="text" name="username" pattern="[A-Za-z0-9]+" required>
-                <p class="help is-danger">Spaces are not allowed</p>
-            </label>
-            <label class="label">
-                Password<span class="required"> *</span>
-                <input class="input" type="password" name="password" required>
-            </label>
-            <input class="button btn-form" type="submit" value="Login">
-        </form>
-    </div>
-    <div class="column is-three-fifths">
-        <h1 class="form-title">Teacher Signup</h1>
-        {% if error_message %}
-            <p>{{ error_message }}</p>
-        {% endif %}
-        <form class="field" action="{% url 'teacher-signup'%}" method="POST">
-            {% csrf_token %}
-            <div class="label-container">
-                <label class="label">
-                    First Name<span class="required"> *</span>
-                    <input class="input" type="text" name="first_name" required>
-                </label>
-                <label class="label">
-                    Last Name<span class="required"> *</span>
-                    <input class="input" type="text" name="last_name" required>
-                </label>
-            </div>
-            <div class="label-container">
+<!-- TEACHER SIGNUP -->
+<div class="row-container">
+    <div class="columns" >
+        <div class="column col-container">
+            <!-- teacher login -->
+            <h2>Teacher Login</h2>
+            {% if error_message %}
+                <p class="form-message-text">{{ error_message }}</p>
+            {% endif %}
+            <form class="field" action="{% url 'teacher-login' %}" method="POST">
+                {% csrf_token %}
                 <label class="label">
                     Username<span class="required"> *</span>
                     <input class="input" type="text" name="username" pattern="[A-Za-z0-9]+" required>
-                    <p class="help is-danger">Spaces are not allowed</p>
+                    <p class="help form-message-text">Spaces are not allowed</p>
                 </label>
-                <label class="label">
-                    Email<span class="required"> *</span>
-                    <input class="input" type="email" name="email" required>
-                </label>
-            </div>
-            <div class="label-container">
-                <label class="label">
-                    Address<span class="required"> *</span>
-                    <input class="input" type="text" name="address" required>
-                </label>
-                <label class="label">
-                    Phone Number<span class="required"> *</span>
-                    <input class="input" type="tel" name="phone_number" maxlength="14" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
-                    <p class="help is-danger">Format: 123-456-7890</p>
-                </label>
-            </div>
-            <div class="label-container">
-                <label class="label">
-                    Teaching Subject<span class="required"> *</span>
-                    <input class="input" type="text" name="subject" placeholder="Math" required>
-                </label>
-                <label class="label">
-                    Sex<span class="required"> *</span>
-                    <input class="input" type="text" name="sex" placeholder="Female" maxlength="10" required>
-                </label>
-            </div>
-            <label class="label">
-                Description<span class="required"> *</span>
-                <textarea class="textarea" name="description" rows="3" maxlength="500" required></textarea>
-            </label>
-            <div class="label-container password-requirements">
-                <ul>
-                    <li>Your password must contain at least 8 characters</li>
-                    <li>Your password must contain at least 1 digit, 0-9</li>
-                    <li>Your password can't be entirely numeric</li>
-                    <li>Your password can't be commonly used password</li>
-                </ul>
-            </div>
-            <div class="label-container">
                 <label class="label">
                     Password<span class="required"> *</span>
-                    <input class="input" type="password" name="password1" minlength="8" pattern="(?=.*\d)(?=.*[a-z]).{8,}" required>
+                    <input class="input" type="password" name="password" required>
                 </label>
+                <input class="button main-btn" type="submit" value="Login">
+            </form>
+        </div>
+        <div class="column is-three-fifths col-container">
+            <h2>Teacher Signup</h2>
+            {% if error_message %}
+                <p>{{ error_message }}</p>
+            {% endif %}
+            <form class="field" action="{% url 'teacher-signup'%}" method="POST">
+                {% csrf_token %}
+                <div class="label-container">
+                    <label class="label">
+                        First Name<span class="required"> *</span>
+                        <input class="input" type="text" name="first_name" required>
+                    </label>
+                    <label class="label">
+                        Last Name<span class="required"> *</span>
+                        <input class="input" type="text" name="last_name" required>
+                    </label>
+                </div>
+                <div class="label-container">
+                    <label class="label">
+                        Username<span class="required"> *</span>
+                        <input class="input" type="text" name="username" pattern="[A-Za-z0-9]+" required>
+                        <p class="help form-message-text">Spaces are not allowed</p>
+                    </label>
+                    <label class="label">
+                        Email<span class="required"> *</span>
+                        <input class="input" type="email" name="email" required>
+                    </label>
+                </div>
+                <div class="label-container">
+                    <label class="label">
+                        Address<span class="required"> *</span>
+                        <input class="input" type="text" name="address" required>
+                    </label>
+                    <label class="label">
+                        Phone Number<span class="required"> *</span>
+                        <input class="input" type="tel" name="phone_number" maxlength="14" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+                        <p class="help form-message-text">Format: 123-456-7890</p>
+                    </label>
+                </div>
+                <div class="label-container">
+                    <label class="label">
+                        Teaching Subject<span class="required"> *</span>
+                        <input class="input" type="text" name="subject" placeholder="Math" required>
+                    </label>
+                    <label class="label">
+                        Sex<span class="required"> *</span>
+                        <input class="input" type="text" name="sex" placeholder="Female" maxlength="10" required>
+                    </label>
+                </div>
                 <label class="label">
-                    Confirm Password<span class="required"> *</span>
-                    <input class="input" type="password" name="password2" minlength="8" required>
+                    Description<span class="required"> *</span>
+                    <textarea class="textarea" name="description" rows="3" maxlength="500" required></textarea>
                 </label>
-            </div>
-            <input class="button btn-form" type="submit" value="Signup">
-        </form>
+                <div class="label-container password-requirements">
+                    <ul>
+                        <li>Your password must contain at least 8 characters</li>
+                        <li>Your password must contain at least 1 digit, 0-9</li>
+                        <li>Your password can't be entirely numeric</li>
+                        <li>Your password can't be commonly used password</li>
+                    </ul>
+                </div>
+                <div class="label-container">
+                    <label class="label">
+                        Password<span class="required"> *</span>
+                        <input class="input" type="password" name="password1" minlength="8" pattern="(?=.*\d)(?=.*[a-z]).{8,}" required>
+                    </label>
+                    <label class="label">
+                        Confirm Password<span class="required"> *</span>
+                        <input class="input" type="password" name="password2" minlength="8" required>
+                    </label>
+                </div>
+                <input class="button main-btn" type="submit" value="Signup">
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}

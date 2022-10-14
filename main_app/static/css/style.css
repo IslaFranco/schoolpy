@@ -4,9 +4,27 @@
     box-sizing: border-box;
 }
 :root{
-    --header-bg-color: rgb(255, 255, 255);
-    --main-color: rgb(44, 94, 135);
-    --main-color-hover: rgb(34, 74, 106);
+    --header-bg-color: #FBFBFD;
+    --main-color: #2C5E87;
+    --main-color-hover: #275478;
+    --second-color: #323233;
+    --second-color-hover: #222222;
+}
+h1{
+    font-size: 2rem;
+    font-weight: 700;
+}
+h2{
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+h3{
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+p{
+    font-size: 1.1rem;
+    color: black;
 }
 body{
     height: 100vh;
@@ -28,7 +46,7 @@ form{
     padding: 0 1rem;
 }
 
-/* MAIN */
+/* BUTTONS */
 .main-btn{
     color: white;
     background-color: var(--main-color);
@@ -37,24 +55,64 @@ form{
     color: white;
     background-color: var(--main-color-hover);
 }
-.row-form-input{
+.second-btn{
+    color: white;
+    background-color: var(--second-color);
+}
+.second-btn:hover{
+    color: white;
+    background-color: var(--second-color-hover);
+}
+/* END BUTTONS */
+
+/* CONTAINERS */
+.text-center{
+    text-align: center;
+}
+.row-container{
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 1rem;
 }
 .col-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 1rem;
 }
+/* END CONTAINERS */
+
+/* FORMS */
+.row-form-input{
+    display: flex;
+}
+.required, .form-message-text{
+    color: red;
+}
+.label-container{
+    display: flex;
+    align-content: center;
+}
+.label{
+    width: 100%;
+    padding: 0.4rem;
+}
+.password-requirements{
+    padding-left: 1.2rem;
+}
+.password-requirements li{
+    list-style-type: disc;
+}
+/* END FORMS */
+
+/* MAIN */
 .page-header{
     display: flex;
     justify-content: center;
     background-color: rgb(230, 230, 230);
     height: auto;
-}
-.page-header h1{
-    font-size: 1.3rem;
-    font-weight: 700;
 }
 
 /* NAVIGATION */
@@ -62,44 +120,8 @@ form{
     background-color: var(--header-bg-color);
     box-shadow: 0px 0px 5px 1px #848484;
 }
-.btn-signup{
-    background-color: var(--main-color);
-    color: white;
-}
-.btn-signup:hover{
-    background-color: var(--main-color-hover);
-    color: white;
-}
 
 /* HOME PAGE */
-.home-info-container{
-    margin: 2rem;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-.home-info-box{
-    display: flex;
-    flex-direction: column;
-    /* align-items: center; */
-    justify-content: center;
-    height: 300px;
-    min-width: 350px;
-    background-color: rgb(240, 240, 240);
-    padding: 2rem;
-}
-.home-info-box h1{
-    font-size: 1.6rem;
-}
-ion-icon{
-    font-size: 100px;  
-}
-.icon{
-    color: black;;
-}
-.icon-title{
-    display: flex;
-    align-items: center;
-}
 .home-banner-container {
     display: flex;
     flex-direction: column;
@@ -111,19 +133,38 @@ ion-icon{
     height: 500px;
     gap: 1rem;
 }
-.home-banner-container h1{
-    font-size: 1.8rem;
-    font-weight: 700;
-    text-align: center;
-}
-.home-banner-container h2{
-    font-size: 1.3rem;
-    text-align: center;
+.home-info-container{
+    display: flex;
+    justify-content: center;
+    margin: 2rem;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 .home-info-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 1rem;
-    text-align: center;
+    height: 300px;
+    min-width: 400px;
+    max-width: 500px;
+    background-color: rgb(240, 240, 240);
+    padding: 2rem;
 }
+.icon{
+    color: black;;
+}
+ion-icon{
+    font-size: 100px;  
+}
+.icon-title{
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+/* END HOME PAGE */
+
 .about-btn-container{
     display: flex;
     flex-wrap: wrap;
@@ -132,45 +173,6 @@ ion-icon{
 .about-btn{
     margin: 0.5rem 0.5rem;
 }
-
-/* TEACHER FORM */
-.form-title{
-    font-size: 1.6rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-.column{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.label-container{
-    display: flex;
-    align-content: center;
-}
-.label{
-    width: 100%;
-    padding: 0.4rem;
-}
-.btn-form{
-    background-color: var(--main-color);
-    color: white;
-    margin-left: 0.4rem;
-}
-.btn-form:hover{
-    background-color: var(--main-color-hover);
-    color: white;
-}
-.password-requirements{
-    padding-left: 1.2rem;
-}
-.password-requirements li{
-    list-style-type: disc;
-}
-.required, .error-text{
-    color: red;
-}
-
 
 /* TEACHER DASHBOARD */
 .teacher-name, .student-name{
@@ -207,10 +209,6 @@ ion-icon{
     flex-direction: row;
     align-items: center;
     justify-content: center;
-}
-.login-container{
-    display: flex;
-    margin-top: 0;
 }
 
 /* STUDENT DETAIL PAGE */
@@ -255,13 +253,25 @@ ion-icon{
     display: flex;
     flex-direction: column;
 }
+
+/* ASSIGNMENTS INDEX */
+.assignment-box{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 280px;
+    height: 90px;
+    gap: 0.4rem;
+}
+
 /* FOOTER */
 footer{
     background-color: var(--main-color) !important;
     padding: 2rem !important;
     margin-top: 2rem;
 }
-footer a,p,strong{
+footer a, footer p, footer strong{
     color: white;
 }
 footer a:hover{
