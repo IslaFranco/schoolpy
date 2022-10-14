@@ -1,16 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Delete Assignment</h1>
-
-<h3>Are you sure you want to Delete 
-    <span>{{ object.title }}</span>?
-</h3>
-
-<form action="" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Delete">
-    <a href="{% url 'assignment_detail' assignment.id %}">Cancel</a> <!-- TODO add link to redirect back to assignment detail page if user wants to cancel-->
-</form>
-
+<div class="box page-header">
+    <h2>Delete Assignment</h2>
+</div>
+<div class="row-container">
+    <h3 class="text-center">Are you sure you want to Delete {{ object.title }}?</h3>
+    <form action="" method="POST" class="row-container">
+        {% csrf_token %}
+        <input class="button is-danger" type="submit" value="Delete">
+        <a class="button is-dark" href="{% url 'assignment_detail' assignment.id %}">Cancel</a>
+    </form>
+</div>
 {% endblock %}
