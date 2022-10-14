@@ -44,23 +44,6 @@ class Assignment(models.Model):
         return reverse('assignment_detail', kwargs={'assignment_id': self.id})
 
 
-class Course(models.Model):
-    subject = models.CharField(max_length=100)
-    description = models.TextField(max_length=1000)
-    title = models.CharField(max_length=100)
-    start_time = models.DateField()
-    end_time = models.DateField()
-    level = models.CharField(max_length=100)
-    course_units = models.IntegerField()
-    term = models.CharField(max_length=100)
-
-    def __str__(self):
-        return f'{self.subject}, {self.title}'
-
-    def get_absolute_url(self):
-        return reverse('course_detail', kwargs={'course_id': self.id})
-
-
 class StudentManager(BaseUserManager):
     def get_queryset(self, *args, **kwargs):
         results = super().get_queryset(*args, **kwargs)
@@ -73,8 +56,6 @@ class Student(User):
     student = StudentManager()
     grade = models.CharField(max_length=100)
     dob = models.DateField()
-
-    models.ManyToManyField(Course)
 
     class Meta:
         verbose_name_plural = 'Student'
@@ -95,9 +76,45 @@ class Teacher(User):
     subject = models.CharField(max_length=100)
     description = models.CharField(max_length=500)
 
-    courses = models.ManyToManyField(Course)
-    students = models.ManyToManyField(Student)
-
     class Meta:
         verbose_name_plural = 'Teacher'
         app_label = 'auth'
+
+
+class Course(models.Model):
+    subject = models.CharField(max_length=100)
+    description = models.TextField(max_length=1000)
+    title = models.CharField(max_length=100)
+    start_time = models.DateField()
+    end_time = models.DateField()
+    level = models.CharField(max_length=100)
+    course_units = models.IntegerField()
+    term = models.CharField(max_length=100)
+
+    teachers = models.ManyToManyField(
+        Teacher, through='CourseTaught', related_name='courses')
+
+    students = models.ManyToManyField(
+        Student, through='CourseTaken', related_name='courses')
+
+    def __str__(self):
+        return f'{self.subject}, {self.title}'
+
+    def get_absolute_url(self):
+        return reverse('course_detail', kwargs={'course_id': self.id})
+
+
+class CourseTaught(models.Model):
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Teacher: {self.teacher.last_name}, {self.teacher.first_name} - {self.course.title}"
+
+
+class CourseTaken(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Student: {self.student.last_name}, {self.student.first_name} - {self.course.title}"
