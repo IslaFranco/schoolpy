@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<h1>Assignments List</h1>
+<div class="box page-header">
+    <h2>Assignments List</h2>
+</div>
+<div class="row-container">
 {% for assignment in assignments %}
-<div class="box">
-    <div>
-        <a>{{ assignment.title }}</a>
+    <div class="box assignment-box">
+        <a href="{{assignment.id}}">{{ assignment.title }}</a>
         <p>Due Date: {{ assignment.due_date }}</p>
     </div>
-</div>
-
 {% endfor %}
+</div>
 {% endblock %}
