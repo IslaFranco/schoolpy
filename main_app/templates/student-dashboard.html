@@ -3,29 +3,57 @@
 {% block content %}
 <div class="detail-container">
     <div class="box avatar-background">
-        <div class="avatar">
+        <div class="row-container align-center">
+            <figure class="image is-128x128">
+                <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
+            </figure>
+            <h2>{{ student.first_name }} {{ student.last_name }}</h2>
         </div>
         <div class="detail-student-title">
-            <h2>{{ student.first_name }} {{ student.last_name }}</h2>
-            <p>Grade: {{ student.grade }}</p>
-            <p>{{ student.sex }}</p>
-            <p class="student-ph-dob">DOB: {{ student.dob }}</p>
-            <p class="student-ph-dob">PH#: {{ student.phone_number }}</p>
-            <p class="student-ph-dob">Address: {{ student.address }}</p>
-        </div>
-    </div>
-    <div class="columns">
-        <div class="column is-half">
-            <h3>Courses Enrolled</h3>
-            <div class="box">
-            <a href="{% url 'course_index' %}">Course</a>
+            <div class="horz-lg-box"">
+                <div class="row-container align-center">
+                    <ion-icon class="icon-white" size="small" name="person"></ion-icon>
+                    <p>{{ student.dob }}</p>
+                    <ion-icon class="icon-white" size="small" name="school"></ion-icon>
+                    <p>{{ student.grade }}</p>
+                    <ion-icon class="icon-white" size="small" name="male-female"></ion-icon>
+                    <p>{{ student.sex }}</p>
+                </div>
+            </div>
+            <div class="horz-lg-box"">
+                <div class="row-container align-center">
+                    <ion-icon class="icon-white" size="small" name="call"></ion-icon>
+                    <p>{{ student.phone_number }}</p>
+                    <ion-icon class="icon-white" size="small" name="location"></ion-icon>
+                    <p>{{ student.address }}</p>
+                </div>
             </div>
         </div>
-        <div class="column is-half">
-            <h3>Assignments</h3>
-            <div class="box">
-                <a href="{% url 'assignment_index' %}">Assignments</a>
+    </div>
+    <div class="row-container">
+        <div class="columns">
+            <div class="column">
+                <div class="box home-info-box">
+                    <h3>Courses Enrolled</h3>
+                    <a class="button is-info" href="{% url 'course_index' %}">View All</a>
+                    {% for course in courses %}
+                    {% if forloop.counter <= 3 %}
+                        <a href="{% url 'course_detail' course.id %}">{{course.title}}</a>
+                    {% endif %}
+                    {% endfor %}
                 </div>
+            </div>
+            <div class="column">
+                <div class="box home-info-box">
+                    <h3>Assignments</h3>
+                    <a class="button is-info" href="{% url 'assignment_index' %}">View All</a>
+                    {% for assignment in assignments %}
+                    {% if forloop.counter <= 3 %}
+                        <a href="{% url 'assignment_detail' assignment.id %}">{{assignment.title}}</a>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
 </div>
