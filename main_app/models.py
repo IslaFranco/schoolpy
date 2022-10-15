@@ -98,14 +98,14 @@ class Assignment(models.Model):
     due_date = models.DateField()
     submitted = models.BooleanField()
 
-    teachers = models.ManyToManyField(
-        Teacher, through='TeacherAssignment', related_name='assignment')
+    teacherAssignments = models.ManyToManyField(
+        Teacher, through='TeacherAssignment', related_name='assignments')
 
-    students = models.ManyToManyField(
-        Student, through='StudentAssignment', related_name='assignment')
+    studentAssignments = models.ManyToManyField(
+        Student, through='StudentAssignment', related_name='assignments')
 
-    courses = models.ManyToManyField(
-        Student, through='CourseAssignment', related_name='assignment')
+    courseAssignments = models.ManyToManyField(
+        Course, through='CourseAssignment', related_name='assignments')
 
     def __str__(self):
         return f'{self.subject}, {self.title}'
@@ -130,16 +130,16 @@ class CourseTaken(models.Model):
         return f"Student: {self.student.last_name}, {self.student.first_name} - {self.course.title}"
 
 
-class TeacherAssignment(models.Models):
+class TeacherAssignment(models.Model):
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
     assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
 
 
-class StudentAssignment(models.Models):
+class StudentAssignment(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
 
 
-class CourseAssignment(models.Models):
+class CourseAssignment(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
