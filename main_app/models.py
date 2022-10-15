@@ -134,12 +134,21 @@ class TeacherAssignment(models.Model):
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
     assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"Assigned By: {self.teacher.last_name}, {self.teacher.first_name}: {self.assignment.title}"
+
 
 class StudentAssignment(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"Assigned By: {self.student.last_name}, {self.student.first_name}: {self.assignment.title}"
+
 
 class CourseAssignment(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Assigned for Course: {self.course.title} by {self.course.teachers}: {self.assignment.title}"
