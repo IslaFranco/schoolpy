@@ -1,3 +1,4 @@
+from ast import Assign
 from operator import imod
 from django.db import models
 from django.contrib.auth.base_user import BaseUserManager
@@ -5,6 +6,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
+
 
 class User(AbstractUser):
 
@@ -27,37 +29,6 @@ class User(AbstractUser):
     phone_number = models.CharField(max_length=14)
     sex = models.CharField(max_length=10)
     address = models.CharField(max_length=255)
-
-
-class Assignment(models.Model):
-    subject = models.CharField(max_length=100)
-    description = models.TextField(max_length=1000)
-    title = models.CharField(max_length=100)
-    due_date = models.DateField()
-    submitted = models.BooleanField()
-
-    def __str__(self):
-        return f'{self.subject}, {self.title}'
-
-    def get_absolute_url(self):
-        return reverse('assignment_detail', kwargs={'assignment_id': self.id})
-
-
-class Course(models.Model):
-    subject = models.CharField(max_length=100)
-    description = models.TextField(max_length=1000)
-    title = models.CharField(max_length=100)
-    start_time = models.DateField()
-    end_time = models.DateField()
-    level = models.CharField(max_length=100)
-    course_units = models.IntegerField()
-    term = models.CharField(max_length=100)
-
-    def __str__(self):
-        return f'{self.subject}, {self.title}'
-        
-    def get_absolute_url(self):
-        return reverse('course_detail', kwargs={'course_id': self.id})
 
 
 class StudentManager(BaseUserManager):
@@ -95,3 +66,89 @@ class Teacher(User):
     class Meta:
         verbose_name_plural = 'Teacher'
         app_label = 'auth'
+
+
+class Course(models.Model):
+    subject = models.CharField(max_length=100)
+    description = models.TextField(max_length=1000)
+    title = models.CharField(max_length=100)
+    start_time = models.DateField()
+    end_time = models.DateField()
+    level = models.CharField(max_length=100)
+    course_units = models.IntegerField()
+    term = models.CharField(max_length=100)
+
+    teachers = models.ManyToManyField(
+        Teacher, through='CourseTaught', related_name='courses')
+
+    students = models.ManyToManyField(
+        Student, through='CourseTaken', related_name='courses')
+
+    def __str__(self):
+        return f'{self.subject}, {self.title}'
+
+    def get_absolute_url(self):
+        return reverse('course_detail', kwargs={'course_id': self.id})
+
+
+class Assignment(models.Model):
+    subject = models.CharField(max_length=100)
+    description = models.TextField(max_length=1000)
+    title = models.CharField(max_length=100)
+    due_date = models.DateField()
+    submitted = models.BooleanField()
+
+    teacherAssignments = models.ManyToManyField(
+        Teacher, through='TeacherAssignment', related_name='assignments')
+
+    studentAssignments = models.ManyToManyField(
+        Student, through='StudentAssignment', related_name='assignments')
+
+    courseAssignments = models.ManyToManyField(
+        Course, through='CourseAssignment', related_name='assignments')
+
+    def __str__(self):
+        return f'{self.subject}, {self.title}'
+
+    def get_absolute_url(self):
+        return reverse('assignment_detail', kwargs={'assignment_id': self.id})
+
+
+class CourseTaught(models.Model):
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Teacher: {self.teacher.last_name}, {self.teacher.first_name} - {self.course.title}"
+
+
+class CourseTaken(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Student: {self.student.last_name}, {self.student.first_name} - {self.course.title}"
+
+
+class TeacherAssignment(models.Model):
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Assigned By: {self.teacher.last_name}, {self.teacher.first_name}: {self.assignment.title}"
+
+
+class StudentAssignment(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Assigned By: {self.student.last_name}, {self.student.first_name}: {self.assignment.title}"
+
+
+class CourseAssignment(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Assigned for Course: {self.course.title} by {self.course.teachers}: {self.assignment.title}"
