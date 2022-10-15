@@ -1,0 +1,1 @@
+web: gunicorn schoolpy.wsgi.application.wsgi
