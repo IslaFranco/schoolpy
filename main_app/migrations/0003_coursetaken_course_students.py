@@ -7,7 +7,6 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('auth', '0013_student_teacher'),
         ('main_app', '0002_coursetaught_course_teachers'),
     ]
 
