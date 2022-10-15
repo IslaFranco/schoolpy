@@ -1,3 +1,4 @@
+from ast import Assign
 from operator import imod
 from django.db import models
 from django.contrib.auth.base_user import BaseUserManager
@@ -118,3 +119,18 @@ class CourseTaken(models.Model):
 
     def __str__(self):
         return f"Student: {self.student.last_name}, {self.student.first_name} - {self.course.title}"
+
+
+class TeacherAssignment(models.Models):
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
+
+
+class StudentAssignment(models.Models):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
+
+
+class CourseAssignment(models.Models):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
