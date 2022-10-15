@@ -7,8 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('auth', '0013_student_teacher'),
-        ('main_app', '0003_coursetaken_course_students'),
+            ('main_app', '0003_coursetaken_course_students'),
     ]
 
     operations = [
