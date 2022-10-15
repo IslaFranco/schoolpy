@@ -31,20 +31,6 @@ class User(AbstractUser):
     address = models.CharField(max_length=255)
 
 
-class Assignment(models.Model):
-    subject = models.CharField(max_length=100)
-    description = models.TextField(max_length=1000)
-    title = models.CharField(max_length=100)
-    due_date = models.DateField()
-    submitted = models.BooleanField()
-
-    def __str__(self):
-        return f'{self.subject}, {self.title}'
-
-    def get_absolute_url(self):
-        return reverse('assignment_detail', kwargs={'assignment_id': self.id})
-
-
 class StudentManager(BaseUserManager):
     def get_queryset(self, *args, **kwargs):
         results = super().get_queryset(*args, **kwargs)
@@ -103,6 +89,29 @@ class Course(models.Model):
 
     def get_absolute_url(self):
         return reverse('course_detail', kwargs={'course_id': self.id})
+
+
+class Assignment(models.Model):
+    subject = models.CharField(max_length=100)
+    description = models.TextField(max_length=1000)
+    title = models.CharField(max_length=100)
+    due_date = models.DateField()
+    submitted = models.BooleanField()
+
+    teachers = models.ManyToManyField(
+        Teacher, through='TeacherAssignment', related_name='assignment')
+
+    students = models.ManyToManyField(
+        Student, through='StudentAssignment', related_name='assignment')
+
+    courses = models.ManyToManyField(
+        Student, through='CourseAssignment', related_name='assignment')
+
+    def __str__(self):
+        return f'{self.subject}, {self.title}'
+
+    def get_absolute_url(self):
+        return reverse('assignment_detail', kwargs={'assignment_id': self.id})
 
 
 class CourseTaught(models.Model):
