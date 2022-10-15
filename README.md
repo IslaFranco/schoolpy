@@ -7,6 +7,7 @@
 - As a Teacher, I want to add homework assignments to display for my specific students enrolled in my class, so they are on track.
 - As a Teacher, I want to be able to Edit and Delete an Assignment, in case I, the Teacher, needs to change the due date.
 - As a Teacher, I want to add different courses i'm teaching, so it is well organized.
+- As a teacher, I want to be able to edit or delete a course, in case i'm no longer teaching it.
 - As a Teacher, I want to edit or delete my courses, in case I need to make adjustments.
 - As a Student, I want to be able to login/sign up for an account with SchoolPy.
 - As a Student, I want to be able to have my courses and assignments displayed for me, so that I know as a student, what to work on and to be organized.
@@ -31,7 +32,7 @@
 ## Getting Started
 - [click here](https://trello.com/b/5WN8Jh03/project-4) to see our Trello Board.
 - [click here](https://docs.google.com/presentation/d/1mmU1i_7Or1-ipexp2S6Lfr_aSONg78FNlM4YnH6Xq9k/edit#slide=id.p) to see out Pitch Deck.
-- [click here]() to access the SchoolPy app.
+- [click here](https://school-py.herokuapp.com/) to access the SchoolPy app.
 
 
 ## Unsolved Problems
