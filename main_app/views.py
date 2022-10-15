@@ -46,8 +46,10 @@ def teacherDashboard(request):
 
 @login_required
 def studentDashboard(request):
-    students = Student.objects.filter(username=request.user)
-    return render(request, 'student-dashboard.html', {'students': students})
+    courses = Course.objects.all()
+    assignments = Assignment.objects.all()
+    student = Student.objects.get(username=request.user)
+    return render(request, 'student-dashboard.html', {'student': student, 'courses': courses, 'assignments': assignments })
 
 
 @login_required
