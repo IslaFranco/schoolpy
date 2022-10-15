@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<h1>Course List</h1>
-<a href=""> <!--TODO Add link for each course -->
-    <div>
-        <div>
-            <span>{{ course.subject }}</span>
-            <p>{{ course.title }}</p>
-        </div>
+<div class="box page-header">
+    <h2>Course List</h2>
+</div>
+<div class="row-container">
+{% for course in courses %}
+    <div class="box assignment-box">
+        <h3><a href="{{course.id}}">{{ course.title }}</a></h3>
+        <p>Start Date: {{ course.start_time }}</p>
     </div>
-</a>
-
+{% endfor %}
+</div>
 {% endblock %}
