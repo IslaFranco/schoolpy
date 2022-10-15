@@ -7,7 +7,6 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('auth', '0013_student_teacher'),
         ('main_app', '0001_initial'),
     ]
 
@@ -15,14 +14,18 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='CourseTaught',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('course', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='main_app.course')),
-                ('teacher', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='auth.teacher')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
+                ('course', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='main_app.course')),
+                ('teacher', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='auth.teacher')),
             ],
         ),
         migrations.AddField(
             model_name='course',
             name='teachers',
-            field=models.ManyToManyField(related_name='courses', through='main_app.CourseTaught', to='auth.teacher'),
+            field=models.ManyToManyField(
+                related_name='courses', through='main_app.CourseTaught', to='auth.teacher'),
         ),
     ]
